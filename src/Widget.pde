@@ -39,7 +39,7 @@ class Widget {
     if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) {
       return event;
     }
-    return EVENT_NULL;
+    return NULL;
   }
   
   // Setting the image of the widget
