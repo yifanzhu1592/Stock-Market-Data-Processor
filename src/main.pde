@@ -212,32 +212,14 @@ void setup() {
   oneYear.setWidgetColor(color(200, 20, 200));
   oneYear.setLabelColor(color(255));
   oneYear.setLabel("1 year");
-
+  
+  // Used for starting to show the chart
   selectChart2 = new Widget(180, y + 430, 120, 50, SELECT_CHART, 10, 10, 10, 10);
   selectChart2.setWidgetColor(color(200, 20, 200));
   selectChart2.setLabelColor(color(255));
   selectChart2.setLabel("Search");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //Ruxin,added dateRange Widget for choosing in a date range in the menu,12pm, 15/04
+  // Used for choosing a date range for the chart
   dateRange = new Widget(180, y+340, 120, 25, DATE_RANGE, 10, 10, 0, 0);
   dateRange.setWidgetColor(color(200, 20, 200));
   dateRange.setLabelColor(color(255));
@@ -246,39 +228,31 @@ void setup() {
   //read file
   String lines[] = loadStrings("daily_prices10k.csv");
 
-  //String lines2[] = loadStrings("stocks.csv");
   dataList = new ArrayList<Datapoints>();
-  //Ruxin, Added stockList for the company info, 1am, 19/03
   resultList = new ArrayList<Datapoints>();
   stockList = new ArrayList<Stocks>();
   read_in_the_file(lines);
   read_in_stocks("stocks.csv");
-  //Ruxin, added dateInRangeList, stores the results that are in the searched range, 01/04, 9pm
   dateInRangeList = new ArrayList<Datapoints>();
 
-  // Yifan Zhu, Sorted the stockList, 12am, 23/3/2020
+  // Sorting the stockList
   stockList = bubbleSort(stockList);
-  // Yifan Zhu, Deleted stocks that don't have transactions, 6pm, 24/3/2020
+  // Deleting stocks that don't have transactions
   stockList = deleteNoTransactionsStocks(stockList);
-  // Yifan Zhu, Added the searchList Widget to offer a list of
-  // stocks for the user to click on and see the info about
-  // the designated stock, 12am, 22/3/2020  
+  // Offering a list of stocks for the user to click on and see the info about the designated stock
   searchList = new Widget[stockList.size()];
   for (int i = 0; i < 10; i++) {
-
     if (i == 0) {
       searchList[i] = new Widget(25, 100 + i * 75, 100, 75, SEARCH_LIST, 10, 5, 0, 0);
       searchList[i].setWidgetColor(color(255));
       searchList[i].setLabelColor(color(0));
       searchList[i].setLabel(stockList.get(i).ticker);
-  }
-    else if (i == 9) {
+  } else if (i == 9) {
       searchList[i] = new Widget(25, 100 + i * 75, 100, 75, SEARCH_LIST, 0, 0, 5, 10);
       searchList[i].setWidgetColor(color(255));
       searchList[i].setLabelColor(color(0));
       searchList[i].setLabel(stockList.get(i).ticker);
- }
-    else {
+  } else {
       searchList[i] = new Widget(25, 100 + i * 75, 100, 75, SEARCH_LIST, 0, 0, 0, 0);
       searchList[i].setWidgetColor(color(255));
       searchList[i].setLabelColor(color(0));
@@ -286,16 +260,14 @@ void setup() {
     }
   }
 
-  // Yifan Zhu, Added the slider SlideWidget as the slider,
-  // 4pm, 30/3/2020
-  // 675 is the height of the slideWidget, (Tim editted height, 18:57 07/04/2020)
+  // The slider works as the slider,
+  // 675 is the height of the slideWidget,
   // 10 is the number of the stocks shown on the list
   sliderHeight = 675 * 10 / stockList.size();
-  slider = new Slider(125, 138, 38, sliderHeight, EVENT_NULL, 10, 10, 10, 10);
+  slider = new Slider(125, 138, 38, sliderHeight, NULL, 10, 10, 10, 10);
   slider.setLabel("");
-
-  //float sliderWidth = 400 * 45 / data.size();
-
+  
+  // Adding widgets for the screen
   screen1 = new Screen(255);
   screen1.addWidget(searchWidget);
   screen1.addWidget(searchButton);
@@ -303,17 +275,12 @@ void setup() {
   screen1.addWidget(downArrowWidget);
   screen1.addWidget(slideWidget);
   screen1.addWidget(slider);
-  screen1.addWidget(searchSpecificYear);
-  screen1.addWidget(searchSpecificMon);
-  screen1.addWidget(searchSpecificDay);
-  //Ruxin, added 4 search widgets, 01/04, 10pm
-  screen1.addWidget(searchSpecificYear_1);
-  screen1.addWidget(searchSpecificMon_1);
-  screen1.addWidget(searchSpecificDay_1);
-  //screen1.addWidget(searchButton2);
-  //screen1.addWidget(selectChartButton);
-
-  //Ruxin, added the widgets to the screen to make it as a persistent menu, 8pm, 16/4 
+  screen1.addWidget(searchSpecificYearStart);
+  screen1.addWidget(searchSpecificMonStart);
+  screen1.addWidget(searchSpecificDayStart);
+  screen1.addWidget(searchSpecificYearEnd);
+  screen1.addWidget(searchSpecificMonEnd);
+  screen1.addWidget(searchSpecificDayEnd);
   screen1.addWidget(pointsChart);
   screen1.addWidget(barChart);
   screen1.addWidget(volumeVsTime);
@@ -325,24 +292,20 @@ void setup() {
   screen1.addWidget(oneYear);
   screen1.addWidget(selectChart2);
   screen1.addWidget(dateRange);
-  
-  
   for (int i = 0; i < 10; i++) {
     screen1.addWidget(searchList[i]);
   }
-    currentScreen = screen1;
+  
+  // Setting screen1 as the current screen
+  currentScreen = screen1;
 } 
 
-
+// Drawing the screen
 void draw() {
-  //println("before draw:"+dateInRangeList.size());
   currentScreen.draw();
-  // Yifan Zhu, fixed the bug that the highlight for the stock would disappear instantly
-  // when the user select the options about showing the graph. It will remain the same
-  // instead, 8pm, 11/04/2020
-  // Yifan Zhu, Added the function that if the user click somewhere other than the stockList,
-  // the highlight would disappear, 11pm, 04/04/2020
-  if (focus == EVENT_UP_ARROW || focus == EVENT_DOWN_ARROW || focus == EVENT_SLIDEWIDGET) {
+  // When the user selects the options about showing the graph, the highlight for the stock would will remain the same;
+  // when the user clicks the two arrows or the slide widget, the highlight would disappear
+  if (focus == UP_ARROW || focus == DOWN_ARROW || focus == SLIDE_WIDGET) {
     for (int i = 0; i < 10; i++) {
       searchList[i].setLabelColor(color(0));
       searchList[i].setWidgetColor(color(255));
