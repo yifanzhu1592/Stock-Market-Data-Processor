@@ -313,11 +313,8 @@ void draw() {
   }
 }
 
-// Yifan Zhu, Added the variable "focus" to the methods mousePressed() and
-// keyPressed() so that the keyboard would work for different textWidgets
-// at different moments, 10pm, 17/3/2020
-// Ruxin, change the showing contents from all the data to searching results, 19/03, 1am
-// Ruxin, changed the method so users can choose new chart directly change the choice, don't need to click other choices again, 2pm, 22/04
+// Activating the designated event when the mouse is pressed,
+// and the focus would move to the event that is clicked
 void mousePressed() {
   int event;
   for (int i = 0; i < currentScreen.Widgets.size(); i++) {
@@ -325,49 +322,36 @@ void mousePressed() {
     event = aWidget.getEvent(mouseX, mouseY);
     switch(event) {
 
-      // Yifan Zhu, Added two cases for two arrows so that
-      // the user can shift the list, 1am, 23/3/2020
-    case EVENT_UP_ARROW:
-      focus = EVENT_UP_ARROW;
+    case UP_ARROW:
+      focus = UP_ARROW;
       if (searchListNo != 0) {
         for (int j = 9; j > 0; j--) {
-          searchList[j].setLabel(searchList[j-1].label);
+          searchList[j].setLabel(searchList[j - 1].label);
         }
-        searchList[0].setLabel(stockList.get(searchListNo-1).ticker);
+        searchList[0].setLabel(stockList.get(searchListNo - 1).ticker);
         searchListNo--;
-        // Yifan Zhu, make sure that the slider will move as the user
-        // click the arrow, 4pm, 30/3/2020
-        slider.setPositionY(slider.y - 675 * 1 / stockList.size());
-      }
-      if (searchListNo == 0) {
+        slider.setPositionY(slider.y - 675 * 1 / stockList.size()); // The slider will move as the user click the arrow
+      } else {
         slider.setPositionY(138);
       }
       break;
 
-      // Yifan Zhu, Added two cases for two arrows so that
-      // the user can shift the list, 1am, 23/3/2020      
-    case EVENT_DOWN_ARROW:
-      focus = EVENT_DOWN_ARROW;
-      if (searchListNo != searchList.length-10) {
+    case DOWN_ARROW:
+      focus = DOWN_ARROW;
+      if (searchListNo != searchList.length - 10) {
         for (int j = 0; j < 9; j++) {
-          searchList[j].setLabel(searchList[j+1].label);
+          searchList[j].setLabel(searchList[j + 1].label);
         }
-        searchList[9].setLabel(stockList.get(searchListNo+10).ticker);
+        searchList[9].setLabel(stockList.get(searchListNo + 10).ticker);
         searchListNo++;
-        // Yifan Zhu, make sure that the slider will move as the user
-        // click the arrow, 4pm, 30/3/2020
         slider.setPositionY(slider.y + 675 * 1 / stockList.size());
-      }
-      if (searchListNo == searchList.length-10) {
+      } else {
         slider.setPositionY(805 - sliderHeight);
       }
       break;
 
-      // Yifan Zhu, Added the case EVENT_SLIDEWIDGET as a background
-      // for the slider, it will move the position of the slider
-      // when the user click on the slideWidget, 12am, 29/3/2020
-    case EVENT_SLIDEWIDGET:
-      focus = EVENT_SLIDEWIDGET;
+    case SLIDE_WIDGET:
+      focus = SLIDE_WIDGET;
       // 138 is the upper bound of the slideWidget
       if (mouseY < 138 + sliderHeight / 2) {
         slider.setPositionY(138);
@@ -385,7 +369,7 @@ void mousePressed() {
         }
       } else {
         slider.setPositionY(mouseY - sliderHeight / 2);
-        searchListNo = (int) ((float)(searchList.length-10) / 
+        searchListNo = (int) ((float)(searchList.length - 10) / 
           ((float)(675 - sliderHeight) / (float)(mouseY - (138 + sliderHeight / 2))));
         for (int j = 0; j < 10; j++) {
           searchList[j].setLabel(stockList.get(searchListNo + j).ticker);
@@ -393,19 +377,16 @@ void mousePressed() {
       }
       break;
       
-//Tim, added the data slider to scroll through the graph being displayed
-//350 is the left most edge of the track for the data slider
-//750 is the right most edge for the track for the data slider
-//When clicking anywhere in the bounds of the track, the slider will snap to that position, 18/04/2020
-    case EVENT_DATASLIDEWIDGET:
-      focus = EVENT_DATASLIDEWIDGET;
-      //4321
-      if (mouseX<450+sliderWidth/2) {
+    case DATA_SLIDE_WIDGET:
+      focus = DATA_SLIDE_WIDGET;
+      //350 is the left most edge of the track for the data slider
+      //750 is the right most edge for the track for the data slider
+      if (mouseX < 450 + sliderWidth / 2) {
         dataSlider.setPositionX(450);
-      } else if (mouseX>750-sliderWidth/2) {
+      } else if (mouseX > 750 - sliderWidth / 2) {
         dataSlider.setPositionX(850 - sliderWidth);
       } else {
-        dataSlider.setPositionX(mouseX-sliderWidth/2);
+        dataSlider.setPositionX(mouseX - sliderWidth / 2);
       }
       break;
 
@@ -442,24 +423,6 @@ void mousePressed() {
      LchangeDate="";
 
       break;
-
-/*Ruxin, delete SEARCH_BUTTON_DATE case and integrate buttons to one, 15/04, 9pm
-      //Ruxin, added cases for a search button and three input boxes, 25/03, 10pm
-      //Ruxin, added DateRange & clear list (as the previous one), 02/04, 9am 
-    case SEARCH_BUTTON_DATE:
-      focus = SEARCH_BUTTON_DATE;
-      dateInRangeList.clear();
-      //LargestChange = 0;
-      DateRange(searchSpecificYear.label, searchSpecificMon.label, searchSpecificDay.label, 
-        searchSpecificYear_1.label, searchSpecificMon_1.label, searchSpecificDay_1.label);
-      //screen1.addWidget(createBarChart(currentLabel));
-      //screen2.addWidget(createPointGraph(currentLabel));
-      stockLargestChange();
-      deleteMenu();
-
-      //dateInRangeList.clear();println("after clear2:"+dateInRangeList.size());
-      break;
-*/
       
       //start date
     case SEARCH_SPECIFIC_YEAR:
@@ -1277,31 +1240,31 @@ void keyPressed() {
   }
 }
 
-//Ruxin, handled the case with 2GB data whose first line is not the information of stock, 5pm, 22/04
 boolean isNumber(String str){
     String reg = "^[0-9]+(.[0-9]+)?$";
     return str.matches(reg);
 }
 
-//Ruxin, added read_in_file method for reading stock info, 2pm, 15/03
-//Ruxin, handled the case with 2GB data whose first line is not the information of stock, 5pm, 22/04
+// Reading stock info
 void read_in_the_file(String[] lines) {
   String tokens[] = new String[8];
-  tokens = split(lines[0],',');
+  tokens = split(lines[0], ',');
   int i;
-  if(!isNumber(tokens[1])){i = 1;}else{i = 0;}
-  //println("i:"+i);
-  for (int j=i; j < lines.length; j++) {
+  if (!isNumber(tokens[1])) {
+    i = 1;
+  } else {
+    i = 0;
+  }
+  for (int j = i; j < lines.length; j++) {
     tokens = split(lines[j], ','); 
     data = new Datapoints(tokens);
     dataList.add(data);
   }
 }
 
-//Ruxin, added read_in_stocks method for reading company info, can read content with commas, 2pm, 19/03
+// Reading company info
 void read_in_stocks(String label) {
-  Table table;
-  table = loadTable(label, "header");
+  Table table = loadTable(label, "header");
   
   for (TableRow row : table.rows()) {
     Stocks stock = new Stocks();
@@ -1314,38 +1277,16 @@ void read_in_stocks(String label) {
   }
 }
 
-// Yifan Zhu, Added stockInfo() method for connecting the search bar with
-// the bar charts, stock compane information, etc. 12pm, 18/3/2020
-// Ruxin, added searched stock info to resultStock, 19/03, 10pm
-// Ruxin, added searched stock data to resultList, 24/03, 9pm
+// Connecting the search bar with the bar charts, stock compane information, etc.
 void stockInfo(String label) {
   for (Stocks stock : stockList) {
     if (stock.ticker.equals(label)) {
-      /*
-      println("ticker: " + stock.ticker + ", " +
-       "exchange: " + stock.exchange + ", " +
-       "name: " + stock.name + ", " +
-       "sector: " + stock.sector + ", " +
-       "industry: " + stock.industry + "\n" );
-       */
       resultStock = stock;
     }
   }
-  //Ruxin, fix the bugs that the result list continues adding when searhing for a new stock
-  //clear the list it here, 02/04, 10pm
   resultList.clear();
   for (Datapoints data : dataList) {
     if (data.ticker.equals(label)) {
-      /*
-      println("ticker: " + data.ticker + ", " +
-       "open_price: " + data.open_price + ", " +
-       "name: " + data.close_price + ", " +
-       "sector: " + data.adjusted_close + ", " +
-       "low: " + data.low + ", " +
-       "high: " + data.high + ", " +
-       "volume: " + data.volume + ", " +
-       "sDate: " + data.sDate + "\n" );
-       */
       resultList.add(data);
     }
   }
