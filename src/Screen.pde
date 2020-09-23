@@ -42,7 +42,7 @@ class Screen {
     }
     // The prompt for searhing bars
     fill(0);
-    line(553,50,557,50);
+    line(553, 50, 557, 50);
     text("Stock name: ", 85, 15);
     text("Choose chart:", 240, 120);
     text("Choose type:", 240, 200);
