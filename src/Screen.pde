@@ -1,17 +1,17 @@
-class Screen{
+class Screen {
   int bgColor; //background color
   ArrayList Widgets;
   int dataNo;
   int resultNo;
   
-  Screen(int c){
+  Screen(int c) {
     this.bgColor = c;
     dataNo = 0;
     resultNo = 0;
     Widgets = new ArrayList();
   }
   
-  Widget getEvent(int mouseX, int mouseY){
+  Widget getEvent(int mouseX, int mouseY) {
     for (int i = 0; i < Widgets.size(); i++) {
       Widget aWidget = (Widget) Widgets.get(i);
       int x = aWidget.x;
@@ -24,17 +24,17 @@ class Screen{
   }
   
   // Printing searching result
-  void draw(){
+  void draw() {
     printData();
   }
   
   // Adding a widget to the screen
-  void addWidget(Widget aWidget){
+  void addWidget(Widget aWidget) {
     Widgets.add(aWidget);
   }
   
   // Printing searching result
-  void printData(){
+  void printData() {
     background(bgColor);
     for (int i = 0; i < Widgets.size(); i++) {
       Widget aWidget = (Widget) Widgets.get(i);
