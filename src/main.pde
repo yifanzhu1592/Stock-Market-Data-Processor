@@ -21,8 +21,8 @@ Slider slider, dataSlider;
 VolumeBarChart chart;//Tim added graph, 2/4 11:19
 VolumePointGraph graph;
 TextWidget searchWidget;
-TextWidget searchSpecificYear, searchSpecificMon, searchSpecificDay, 
-           searchSpecificYear_1, searchSpecificMon_1, searchSpecificDay_1;
+TextWidget searchSpecificYearStart, searchSpecificMonStart, searchSpecificDayStart, 
+           searchSpecificYearEnd, searchSpecificMonEnd, searchSpecificDayEnd;
 PFont stdFont;
 PImage upArrow;
 PImage downArrow;
@@ -220,7 +220,7 @@ void setup() {
   selectChart2.setLabel("Search");
 
   // Used for choosing a date range for the chart
-  dateRange = new Widget(180, y+340, 120, 25, DATE_RANGE, 10, 10, 0, 0);
+  dateRange = new Widget(180, y + 340, 120, 25, DATE_RANGE, 10, 10, 0, 0);
   dateRange.setWidgetColor(color(200, 20, 200));
   dateRange.setLabelColor(color(255));
   dateRange.setLabel("Date Range");
@@ -397,165 +397,124 @@ void mousePressed() {
     case SEARCH_BUTTON:
       focus = SEARCH_BUTTON;
       stockInfo(searchWidget.label);
-      //Tim, changed from currentScreen to screen1 to help navigation of different
-      //functions 02/04/20 11:22
-      //Ruxin, added DateRange to store current searching result in dateInRangeList,
-      //and clear it before use, 02/04, 9pm
       dateInRangeList.clear();
-      DateRange(searchSpecificYear.label, searchSpecificMon.label, searchSpecificDay.label, 
-        searchSpecificYear_1.label, searchSpecificMon_1.label, searchSpecificDay_1.label);
+      DateRange(searchSpecificYearStart.label, searchSpecificMonStart.label, searchSpecificDayStart.label, 
+        searchSpecificYearEnd.label, searchSpecificMonEnd.label, searchSpecificDayEnd.label);
       searchOrListTicker = 1;
-      //Ruxin, fixed the bug that there might be overlapping chart, 10pm, 15/04
-      //createChartMenu();
       deletePreviousChart();
       
-     currentScreen.Widgets.remove(backButton);
-     currentScreen.Widgets.remove(forwardButton);
-     currentScreen.Widgets.remove(dataSlideWidget);
-     currentScreen.Widgets.remove(dataSlider);
+      currentScreen.Widgets.remove(backButton);
+      currentScreen.Widgets.remove(forwardButton);
+      currentScreen.Widgets.remove(dataSlideWidget);
+      currentScreen.Widgets.remove(dataSlider);
      
-     searchButton.setWidgetColor(color(255, 0, 255));
-     for (int z = 0; z < 10; z++) {
+      searchButton.setWidgetColor(color(255, 0, 255));
+      for (int z = 0; z < 10; z++) {
         searchList[z].setWidgetColor(color(255));
       }
-     //Ruxin, added code to clear previous info, 12pm, 22/04
-     LargestChange=0;
-     LchangeDate="";
+      LargestChange = 0;
+      LchangeDate = "";
 
       break;
       
-      //start date
-    case SEARCH_SPECIFIC_YEAR:
-      focus = SEARCH_SPECIFIC_YEAR;
+    // Start dates
+    case SEARCH_SPECIFIC_YEAR_START:
+      focus = SEARCH_SPECIFIC_YEAR_START;
       break;
-    case SEARCH_SPECIFIC_MON:
-      focus = SEARCH_SPECIFIC_MON;
+    case SEARCH_SPECIFIC_MON_START:
+      focus = SEARCH_SPECIFIC_MON_START;
       break;
-    case SEARCH_SPECIFIC_DAY:
-      focus = SEARCH_SPECIFIC_DAY;
-      break;
-
-      //Ruxin, added 3 cases(end dates) for searching in a date range. 04/02, 9pm
-    case SEARCH_SPECIFIC_YEAR_1:
-      focus = SEARCH_SPECIFIC_YEAR_1;
-      break;
-    case SEARCH_SPECIFIC_MON_1:
-      focus = SEARCH_SPECIFIC_MON_1;
-      break;
-    case SEARCH_SPECIFIC_DAY_1:
-      focus = SEARCH_SPECIFIC_DAY_1;
+    case SEARCH_SPECIFIC_DAY_START:
+      focus = SEARCH_SPECIFIC_DAY_START;
       break;
 
-      // Yifan Zhu, Added the SEARCH_LIST case so that the program would
-      // react to the user's click on the list and show specific infomation
-      // 12am, 23/3/2020
+    // End dates
+    case SEARCH_SPECIFIC_YEAR_END:
+      focus = SEARCH_SPECIFIC_YEAR_END;
+      break;
+    case SEARCH_SPECIFIC_MON_END:
+      focus = SEARCH_SPECIFIC_MON_END;
+      break;
+    case SEARCH_SPECIFIC_DAY_END:
+      focus = SEARCH_SPECIFIC_DAY_END;
+      break;
+      
     case SEARCH_LIST:
-    
-    searchButton.setWidgetColor(color(200, 0, 200));
+      searchButton.setWidgetColor(color(200, 0, 200));
       focus = SEARCH_LIST;
       for (int j = 0; j < 10; j++) {
         searchList[j].setWidgetColor(color(255));
       }
       String label = "";
-      // Yifan Zhu, Added the function that the element that is being clicked
-      // by the user would be highlighted, 11pm, 04/04/2020
+      // The element that is being clicked by the user would be highlighted
       if (mouseY > 100 + 0 * 75 && mouseY < 100 + 1 * 75) {
         label = searchList[0].label;
-        // searchList[0].setLabelColor(color(255));
         searchList[0].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 1 * 75 && mouseY < 100 + 2 * 75) {
         label = searchList[1].label;
-        // searchList[1].setLabelColor(color(255));
         searchList[1].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 2 * 75 && mouseY < 100 + 3 * 75) {
         label = searchList[2].label;
-        // searchList[2].setLabelColor(color(255));
         searchList[2].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 3 * 75 && mouseY < 100 + 4 * 75) {
         label = searchList[3].label;
-        // searchList[3].setLabelColor(color(255));
         searchList[3].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 4 * 75 && mouseY < 100 + 5 * 75) {
         label = searchList[4].label;
-        //  searchList[4].setLabelColor(color(255));
         searchList[4].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 5 * 75 && mouseY < 100 + 6 * 75) {
         label = searchList[5].label;
-        //  searchList[5].setLabelColor(color(255));
         searchList[5].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 6 * 75 && mouseY < 100 + 7 * 75) {
         label = searchList[6].label;
-        //  searchList[6].setLabelColor(color(255));
         searchList[6].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 7 * 75 && mouseY < 100 + 8 * 75) {
         label = searchList[7].label;
-        //  searchList[7].setLabelColor(color(255));
         searchList[7].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 8 * 75 && mouseY < 100 + 9 * 75) {
         label = searchList[8].label;
-        // searchList[8].setLabelColor(color(255));
         searchList[8].setWidgetColor(color(255, 20, 255));
       } else if (mouseY > 100 + 9 * 75 && mouseY < 100 + 10 * 75) {
         label = searchList[9].label;
-        //  searchList[9].setLabelColor(color(255));
         searchList[9].setWidgetColor(color(255, 20, 255));
       }
       listLabel = label;
       stockInfo(label);
       searchOrListTicker = 2;
-      //Ruxin, changed the menu to a new one, 8pm, 16/04
-      //createChartMenu();
+
       currentScreen.Widgets.remove(dataSlideWidget);
-     currentScreen.Widgets.remove(dataSlider);
+      currentScreen.Widgets.remove(dataSlider);
       deletePreviousChart();
-      
-      // Ruxin, added DateRange to store current searching result in dateInRangeList
-      // set label for global use, and clear it,02/04, 9pm
       dateInRangeList.clear();
       currentLabel = label;
-      DateRange(searchSpecificYear.label, searchSpecificMon.label, searchSpecificDay.label, 
-        searchSpecificYear_1.label, searchSpecificMon_1.label, searchSpecificDay_1.label);
-      //Tim, changed from currentScreen to screen1 to help navigation of different
-      //functions 02/04/20 11:22
-          //screen2.addWidget(createPointGraph(label));  
-
+      DateRange(searchSpecificYearStart.label, searchSpecificMonStart.label, searchSpecificDayStart.label, 
+        searchSpecificYearEnd.label, searchSpecificMonEnd.label, searchSpecificDayEnd.label);
       currentScreen.Widgets.remove(backButton);
-     currentScreen.Widgets.remove(forwardButton); 
+      currentScreen.Widgets.remove(forwardButton); 
      
-     //currentScreen.Widgets.remove(dataSlideWidget);
-     //currentScreen.Widgets.remove(dataSlider);
-     //Ruxin, added code to clear previous info, 12pm, 22/04
-     LargestChange=0;
-     LchangeDate="";
-     break;
-     
-     //case CHOOSE_CHART: 
+      LargestChange = 0;
+      LchangeDate = "";
+      break;
 
-     //  println("barchart Selected");
-
-     //break;
-     case BARCHART:
-       focus = BARCHART;
-       println("barchart Selected");
-       barChartBool = true;
-       barChart.setWidgetColor(color(255, 0, 255));
-       pointsChartBool = false;
-       pointsChart.setWidgetColor(color(200, 20, 200));  
-       
-     break;
+    case BARCHART:
+      focus = BARCHART;
+      println("barchart Selected");
+      barChartBool = true;
+      barChart.setWidgetColor(color(255, 0, 255));
+      pointsChartBool = false;
+      pointsChart.setWidgetColor(color(200, 20, 200));
+      break;
      
-     case POINTSCHART:
+    case POINTSCHART:
       focus = POINTSCHART;
-       println("pointschart Selected");
+      println("pointschart Selected");
       pointsChartBool = true;
-      pointsChart.setWidgetColor(color(255, 0, 255));   
- 
+      pointsChart.setWidgetColor(color(255, 0, 255));
       barChartBool = false;
       barChart.setWidgetColor(color(200, 20, 200));
-      
-     break;
+      break;
     
-     case VOLUME_VS_TIME:
+    case VOLUME_VS_TIME:
       println("volumevtime Selected");
       volumeVTimeBool = true;
       volumeVsTime.setWidgetColor(color(255, 0, 255));
@@ -563,35 +522,30 @@ void mousePressed() {
       openingVsTime.setWidgetColor(color(200, 20, 200));
       closingVTimeBool = false;
       closingVsTime.setWidgetColor(color(200, 20, 200));
-      
       break;
-     case OPENING_VS_TIME:
-       println("openingvtime Selected");
-
+      
+    case OPENING_VS_TIME:
+      println("openingvtime Selected");
       openingVTimeBool = true;
       openingVsTime.setWidgetColor(color(255, 0, 255));
-       volumeVTimeBool = false;
+      volumeVTimeBool = false;
       volumeVsTime.setWidgetColor(color(200, 20, 200));
       closingVTimeBool = false;
       closingVsTime.setWidgetColor(color(200, 20, 200));
-      
-     
-     break;
-     case CLOSING_VS_TIME:
- println("closingvtime Selected");
-    closingVTimeBool = true;
+      break;
+       
+    case CLOSING_VS_TIME:
+      println("closingvtime Selected");
+      closingVTimeBool = true;
       closingVsTime.setWidgetColor(color(255, 0, 255));
-   openingVTimeBool = false;
+      openingVTimeBool = false;
       openingVsTime.setWidgetColor(color(200, 20, 200));
       volumeVTimeBool = false;
       volumeVsTime.setWidgetColor(color(200, 20, 200));
+      break;
      
-     
-     break;
-     
-     case ALL_TIME:
-     println("alltime Selected");
-     
+    case ALL_TIME:
+      println("alltime Selected");  
       allTimeBool = true;
       allTime.setWidgetColor(color(255, 0, 255));
       fiveYearBool = false;
@@ -600,16 +554,11 @@ void mousePressed() {
       twoYear.setWidgetColor(color(200, 20, 200));
       oneYearBool = false;
       oneYear.setWidgetColor(color(200, 20, 200));
-      //println("select date Selected"); 
-      //selectDateBool = true;
-      //selectDate.setWidgetColor(color(255, 0, 255));
       dateRangeBool = false;
       dateRange.setWidgetColor(color(200, 20, 200));
-      
-
-   break; 
+      break; 
      
-       case FIVE_YEAR:
+    case FIVE_YEAR:
       println("fiveYearSelected"); 
       fiveYearBool = true;
       fiveYear.setWidgetColor(color(255, 0, 255));
@@ -621,17 +570,13 @@ void mousePressed() {
       oneYear.setWidgetColor(color(200, 20, 200));
       dateRangeBool = false;
       dateRange.setWidgetColor(color(200, 20, 200));
-      
-      //dateInRangeList.clear();
-      //DateRange("2015","01","01","2020","12","31");
-      
-      break; 
+      break;
      
-       case TWO_YEAR:
-      println("twoYearSelected"); 
+    case TWO_YEAR:
+      println("twoYearSelected");
       twoYearBool = true;
       twoYear.setWidgetColor(color(255, 0, 255));
-       allTimeBool = false;
+      allTimeBool = false;
       allTime.setWidgetColor(color(200, 20, 200));
       fiveYearBool = false;
       fiveYear.setWidgetColor(color(200, 20, 200));
@@ -639,17 +584,13 @@ void mousePressed() {
       oneYear.setWidgetColor(color(200, 20, 200));
       dateRangeBool = false;
       dateRange.setWidgetColor(color(200, 20, 200));
-      
-      //dateInRangeList.clear();
-      //DateRange("2018","01","01","2020","12","31");
-      
       break; 
      
-       case ONE_YEAR:
-      println("oneYearSelected"); 
+    case ONE_YEAR:
+      println("oneYearSelected");
       oneYearBool = true;
       oneYear.setWidgetColor(color(255, 0, 255));
-       allTimeBool = false;
+      allTimeBool = false;
       allTime.setWidgetColor(color(200, 20, 200));
       fiveYearBool = false;
       fiveYear.setWidgetColor(color(200, 20, 200));
@@ -657,13 +598,9 @@ void mousePressed() {
       twoYear.setWidgetColor(color(200, 20, 200));
       dateRangeBool = false;
       dateRange.setWidgetColor(color(200, 20, 200));
-         
-      //   dateInRangeList.clear();
-      //DateRange("2019","01","01","2020","12","31");
+      break;
       
-    break; 
-    //Ruxin, added new case for searching in a date range,11pm, 15/04
-     case DATE_RANGE:
+    case DATE_RANGE:
       focus = DATE_RANGE;
       println("daterange selected");
       dateRangeBool = true;
@@ -676,11 +613,9 @@ void mousePressed() {
       fiveYear.setWidgetColor(color(200, 20, 200));
       twoYearBool = false;
       twoYear.setWidgetColor(color(200, 20, 200));
-      
-     break;
+      break;
      
-     //Ruxin, changed SELECT_CHART case so all buttons are integrated, 10pm, 15/04
-     case SELECT_CHART:
+    case SELECT_CHART:
      
       //println("\nSIZEBBBBBBB:"+currentScreen.Widgets.size());
      deletePreviousChart();
@@ -1306,56 +1241,42 @@ void stockLargestChange() {
   }
 }
 
-//Ruxin, added DateRange method which adds the searhing results in dateInRangeList, 01/04, 11pm
-//Ruxin, fixed the bug that dateInRangeList use the same pointer address with dataList, 15/04, 10pm
-void DateRange(String year, String month, String day, String year1, String month1, String day1) {
-  ////tttt
-  //while(dateRangeBool == true && ((year.equals(""))||(month.equals(""))||(day.equals(""))||(year1.equals(""))||(month1.equals(""))||(day1.equals("")))){
-  //  text("please enter a date range in the format:yyyy mm dd",525,365);
-  //  if((!year.equals(""))&&(!month.equals(""))&&(!day.equals(""))&&(!year1.equals(""))&&(!month1.equals(""))&&(!day1.equals(""))){
-  //    break;
-  //  }
-  //  if(focus != DATE_RANGE){
-  //    break;
-  //  }
-  //}
-  if ((!year.equals("")) && (month.equals("")) && (day.equals(""))) {
-    for(Datapoints data:dataList){
+// Adding the searhing results in dateInRangeList
+void DateRange(String yearStart, String monthStart, String dayStart, String yearEnd, String monthEnd, String dayEnd) {
+  if ((yearStart.equals("")) && (monthStart.equals("")) && (dayStart.equals(""))) {
+    for (Datapoints data : resultList) {
        dateInRangeList.add(data);
     }
-  } else if ((!year.equals("")) && (month.equals("")) && (day.equals(""))) {
-    for (int i = 0; i <resultList.size(); i++) {
+  } else if ((!yearStart.equals("")) && (monthStart.equals("")) && (dayStart.equals(""))) {
+    for (int i = 0; i < resultList.size(); i++) {
       Datapoints data = resultList.get(i);
-      int temp = int(resultList.get(i).sDate.substring(0, 4));
-      if (temp >= int(year) && temp <= int(year1)) {
-        dateInRangeList.add(data);//println("first if add, size "+dateInRangeList.size());
+      int temp = int(data.sDate.substring(0, 4));
+      if (temp >= int(yearStart) && temp <= int(yearEnd)) {
+        dateInRangeList.add(data);
       }
     }
-  } else if ((!year.equals("")) && (!month.equals("")) && (day.equals("")) ) {
-    int begin = int(year+month);
-    int end = int(year1+month1);
-    for (int i = 0; i <resultList.size(); i++) {
+  } else if ((!yearStart.equals("")) && (!monthStart.equals("")) && (dayStart.equals("")) ) {
+    int begin = int(yearStart + monthStart);
+    int end = int(yearEnd + monthEnd);
+    for (int i = 0; i < resultList.size(); i++) {
       Datapoints data = resultList.get(i);
       int temp = int(resultList.get(i).sDate.substring(0, 7).replace("-", ""));
       if ((temp >= begin) && (temp <= end)) {
-        dateInRangeList.add(data);//println("second if add, size "+dateInRangeList.size());
+        dateInRangeList.add(data);
       }
     }
   } else { 
-    int begin = int(year+month+day);
-    int end = int(year1+month1+day1);
-    for (int i = 0; i <resultList.size(); i++) {
+    int begin = int(yearStart + monthStart + dayStart);
+    int end = int(yearEnd + monthEnd + dayEnd);
+    for (int i = 0; i < resultList.size(); i++) {
       Datapoints data = resultList.get(i);
       int temp = int(resultList.get(i).sDate.replace("-", ""));
       if ((temp >= begin) && (temp <= end)) {
-        dateInRangeList.add(data);//println("third if add, size "+dateInRangeList.size());
+        dateInRangeList.add(data);
       }
     }
   }
-  //println("dateInRangeList.size: "+dateInRangeList.size());
 }
-
-
 
 String minusFiveYears(String dateToBeChanged){
   
@@ -3072,11 +2993,8 @@ void deleteMenu(){
 }
 */
 
-//Ruxin, fixed the bug that slider doesn't disappear when choosing another stock, 
-// fixed the bug that slider doesn't change with the garph, 3am, 23/04
-void deletePreviousChart()
-{
-
+// Deleting the previous chart
+void deletePreviousChart() {
 
   int deleteVolumeBIndex = -1;
   int deleteOpeningBIndex = -1;
@@ -3084,65 +3002,59 @@ void deletePreviousChart()
   int deleteVolumePIndex = -1;
   int deleteOpeningPIndex = -1;
   int deleteClosingPIndex = -1;
-
-  //println("\ncurrentScreen.Widgets.size:"+currentScreen.Widgets.size());
   
   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof VolumeBarChart) {
+    if (currentScreen.Widgets.get(index) instanceof VolumeBarChart) {
       deleteVolumeBIndex = index;
     }   
    
-    if ( currentScreen.Widgets.get(index) instanceof OpeningPriceBarChart) {
+    if (currentScreen.Widgets.get(index) instanceof OpeningPriceBarChart) {
       deleteOpeningBIndex = index;
     }
    
-    if ( currentScreen.Widgets.get(index) instanceof ClosingPriceBarChart) {
+    if (currentScreen.Widgets.get(index) instanceof ClosingPriceBarChart) {
       deleteClosingBIndex = index;
     }
 
-    if ( currentScreen.Widgets.get(index) instanceof VolumePointGraph) {
+    if (currentScreen.Widgets.get(index) instanceof VolumePointGraph) {
       deleteVolumePIndex = index;
     }
-    if ( currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
+    
+    if (currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
       deleteOpeningPIndex = index;
     }
-    if ( currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
+    
+    if (currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
       deleteClosingPIndex = index;
     }
   }
 
-//  println("deleteVolumeBIndex:"+deleteVolumeBIndex);
-//  println("deleteOpeningBIndex:"+deleteOpeningBIndex);
-//  println("deleteClosingBIndex:"+deleteClosingBIndex);
-//  println("deleteVolumePIndex:"+deleteVolumePIndex);
-//  println("deleteOpeningPIndex:"+deleteOpeningPIndex);
-//  println("deleteClosingPIndex:"+deleteClosingPIndex);
-
-////Tim, removes each data slider when removing the graph, 18/04/2020
-  if (deleteVolumeBIndex != -1){
+  if (deleteVolumeBIndex != -1) {
     currentScreen.Widgets.remove(deleteVolumeBIndex);
   }
-  if (deleteOpeningBIndex != -1){
+  
+  if (deleteOpeningBIndex != -1) {
     currentScreen.Widgets.remove(deleteOpeningBIndex);
-}
-  if (deleteClosingBIndex != -1){
+  }
+  
+  if (deleteClosingBIndex != -1) {
     currentScreen.Widgets.remove(deleteClosingBIndex);  
   }
-  if (deleteVolumePIndex != -1){
+  
+  if (deleteVolumePIndex != -1) {
     currentScreen.Widgets.remove(deleteVolumePIndex);
   }
-  if (deleteOpeningPIndex != -1){
+  
+  if (deleteOpeningPIndex != -1) {
     currentScreen.Widgets.remove(deleteOpeningPIndex);
   }
-  if (deleteClosingPIndex != -1){
+  
+  if (deleteClosingPIndex != -1) {
     currentScreen.Widgets.remove(deleteClosingPIndex);;
   }
-  //currentScreen.Widgets.remove(dataSlideWidget);
-  //currentScreen.Widgets.remove(dataSlider);
 }
-// Yifan Zhu, Added the bubbleSort() method for the stockList
-// so that the names on the list could be shown in alphabetic order,
-// 11pm, 23/3/2020
+
+// Showing the names on the list in alphabetic order
 ArrayList<Stocks> bubbleSort(ArrayList<Stocks> list) {
   Object[] arr1 = list.toArray();
   Stocks[] arr = new Stocks[arr1.length];
@@ -3150,13 +3062,13 @@ ArrayList<Stocks> bubbleSort(ArrayList<Stocks> list) {
     arr[i] = (Stocks) arr1[i];
   }
   int n = arr.length; 
-  for (int i=0; i < n; i++) 
-    for (int j=1; j < (n-i); j++) 
-      if (arr[j].ticker.compareTo(arr[j-1].ticker) < 0) 
+  for (int i = 0; i < n; i++) 
+    for (int j = 1; j < (n-i); j++) 
+      if (arr[j].ticker.compareTo(arr[j - 1].ticker) < 0) 
       { 
         // swap elements
-        Stocks temp = arr[j-1]; 
-        arr[j-1] = arr[j]; 
+        Stocks temp = arr[j - 1]; 
+        arr[j - 1] = arr[j]; 
         arr[j] = temp;
       }
   List<Stocks> list1 = Arrays.asList(arr);
@@ -3168,8 +3080,7 @@ ArrayList<Stocks> bubbleSort(ArrayList<Stocks> list) {
   return list2;
 }
 
-// Yifan Zhu, Added the deleteNoTransactionsStocks() method to delete
-// all the stocks that don't have transactions, 6pm, 24/3/2020
+// Deleting all the stocks that don't have transactions, 6pm, 24/3/2020
 ArrayList<Stocks> deleteNoTransactionsStocks(ArrayList<Stocks> list) {
   int dataListLength = dataList.size();
   for (int i = 0; i < list.size(); ) {
