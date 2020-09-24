@@ -616,13 +616,10 @@ void mousePressed() {
       break;
      
     case SELECT_CHART:
-     
-      //println("\nSIZEBBBBBBB:"+currentScreen.Widgets.size());
-     deletePreviousChart();
-     //println("SIZEAAAAAAA:"+currentScreen.Widgets.size());
+      deletePreviousChart();
      currentScreen.Widgets.remove(backButton);
      currentScreen.Widgets.remove(forwardButton);
-     //println("SIZEAAAAAAA:"+currentScreen.Widgets.size());println("");
+     //println("SIZEAAAAAAA:"+currentScreen.Widge
       
      currentScreen.Widgets.remove(dataSlideWidget);
      currentScreen.Widgets.remove(dataSlider);
