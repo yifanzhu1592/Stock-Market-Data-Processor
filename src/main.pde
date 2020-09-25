@@ -862,169 +862,204 @@ void mousePressed() {
       break;
       
     case FORWARD_BUTTON:
-       deletePreviousChart();
-       currentScreen.Widgets.remove(dataSlider);
-       if(barChartBool && volumeVTimeBool && fiveYearBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
-         fiveYearsPrevious =  plusFiveYears( fiveYearsPrevious);
-         fiveYearsAfter = plusFiveYears( fiveYearsAfter);
-         currentScreen.addWidget(fiveYearRangeVolumeBarChart(currentTicker, fiveYearsPrevious, fiveYearsAfter));
-         String[] date5 = fiveYearsPrevious.split("-");String[] date5_ = fiveYearsAfter.split("-");
-         DateRange(date5[0],date5[1],date5[2],date5_[0],date5_[1],date5_[2]);
+      deletePreviousChart();
+      currentScreen.Widgets.remove(dataSlider);
+      if (barChartBool && volumeVTimeBool && fiveYearBool && !pointsChartBool &&
+          !openingVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
+          
+        fiveYearsPrevious =  plusFiveYears(fiveYearsPrevious);
+        fiveYearsAfter = plusFiveYears(fiveYearsAfter);
+        currentScreen.addWidget(fiveYearRangeVolumeBarChart(currentTicker, fiveYearsPrevious, fiveYearsAfter));
+        String[] date5 = fiveYearsPrevious.split("-");
+        String[] date5_ = fiveYearsAfter.split("-");
+        DateRange(date5[0], date5[1], date5[2], date5_[0], date5_[1], date5_[2]);
       
-       } else if(barChartBool && openingVTimeBool && fiveYearBool  && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (barChartBool && openingVTimeBool && fiveYearBool && !pointsChartBool &&
+          !volumeVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
         
-           fiveYearsPrevious =  plusFiveYears( fiveYearsPrevious);
-           fiveYearsAfter = plusFiveYears( fiveYearsAfter);
-           currentScreen.addWidget(fiveYearRangeOpeningBarChart(currentTicker, fiveYearsPrevious, fiveYearsAfter));
-           String[] date5 = fiveYearsPrevious.split("-");String[] date5_ = fiveYearsAfter.split("-");
-           DateRange(date5[0],date5[1],date5[2],date5_[0],date5_[1],date5_[2]);
+        fiveYearsPrevious =  plusFiveYears(fiveYearsPrevious);
+        fiveYearsAfter = plusFiveYears(fiveYearsAfter);
+        currentScreen.addWidget(fiveYearRangeOpeningBarChart(currentTicker, fiveYearsPrevious, fiveYearsAfter));
+        String[] date5 = fiveYearsPrevious.split("-");
+        String[] date5_ = fiveYearsAfter.split("-");
+        DateRange(date5[0], date5[1], date5[2], date5_[0], date5_[1], date5_[2]);
      
-       } else if(barChartBool && closingVTimeBool && fiveYearBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (barChartBool && closingVTimeBool && fiveYearBool && !pointsChartBool &&
+          !volumeVTimeBool && !openingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
         
-           fiveYearsPrevious = plusFiveYears( fiveYearsPrevious);
-           fiveYearsAfter = plusFiveYears( fiveYearsAfter);
-           currentScreen.addWidget(fiveYearRangeClosingBarChart(currentTicker, fiveYearsPrevious, fiveYearsAfter));
-           String[] date5 = fiveYearsPrevious.split("-");String[] date5_ = fiveYearsAfter.split("-");
-           DateRange(date5[0],date5[1],date5[2],date5_[0],date5_[1],date5_[2]);
+        fiveYearsPrevious = plusFiveYears(fiveYearsPrevious);
+        fiveYearsAfter = plusFiveYears(fiveYearsAfter);
+        currentScreen.addWidget(fiveYearRangeClosingBarChart(currentTicker, fiveYearsPrevious, fiveYearsAfter));
+        String[] date5 = fiveYearsPrevious.split("-");
+        String[] date5_ = fiveYearsAfter.split("-");
+        DateRange(date5[0], date5[1], date5[2], date5_[0], date5_[1], date5_[2]);
            
-       } else if(pointsChartBool && volumeVTimeBool && fiveYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
-         fiveYearsPrevious =  plusFiveYears( fiveYearsPrevious);
-         fiveYearsAfter = plusFiveYears( fiveYearsAfter);
-         currentScreen.addWidget(fiveYearRangeVolumePointGraph(currentTicker, fiveYearsPrevious, fiveYearsAfter));
-         String[] date5 = fiveYearsPrevious.split("-");String[] date5_ = fiveYearsAfter.split("-");
-           DateRange(date5[0],date5[1],date5[2],date5_[0],date5_[1],date5_[2]);
+      } else if (pointsChartBool && volumeVTimeBool && fiveYearBool && !barChartBool &&
+          !openingVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
+          
+        fiveYearsPrevious = plusFiveYears(fiveYearsPrevious);
+        fiveYearsAfter = plusFiveYears(fiveYearsAfter);
+        currentScreen.addWidget(fiveYearRangeVolumePointGraph(currentTicker, fiveYearsPrevious, fiveYearsAfter));
+        String[] date5 = fiveYearsPrevious.split("-");
+        String[] date5_ = fiveYearsAfter.split("-");
+        DateRange(date5[0], date5[1], date5[2], date5_[0], date5_[1], date5_[2]);
       
-       } else if(pointsChartBool && openingVTimeBool && fiveYearBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && openingVTimeBool && fiveYearBool && !barChartBool &&
+          !volumeVTimeBool && !closingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
         
-           fiveYearsPrevious =  plusFiveYears( fiveYearsPrevious);
-           fiveYearsAfter = plusFiveYears( fiveYearsAfter);
-           currentScreen.addWidget(fiveYearRangeOpeningPointGraph(currentTicker, fiveYearsPrevious, fiveYearsAfter));
-           String[] date5 = fiveYearsPrevious.split("-");String[] date5_ = fiveYearsAfter.split("-");
-           DateRange(date5[0],date5[1],date5[2],date5_[0],date5_[1],date5_[2]);
-         
+        fiveYearsPrevious = plusFiveYears(fiveYearsPrevious);
+        fiveYearsAfter = plusFiveYears(fiveYearsAfter);
+        currentScreen.addWidget(fiveYearRangeOpeningPointGraph(currentTicker, fiveYearsPrevious, fiveYearsAfter));
+        String[] date5 = fiveYearsPrevious.split("-");
+        String[] date5_ = fiveYearsAfter.split("-");
+        DateRange(date5[0], date5[1], date5[2], date5_[0], date5_[1], date5_[2]);
      
-       } else if(pointsChartBool && closingVTimeBool && fiveYearBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && closingVTimeBool && fiveYearBool && !barChartBool &&
+          !volumeVTimeBool && !openingVTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
         
-           fiveYearsPrevious = plusFiveYears( fiveYearsPrevious);
-           fiveYearsAfter = plusFiveYears( fiveYearsAfter);
-           currentScreen.addWidget(fiveYearRangeClosingPointGraph(currentTicker, fiveYearsPrevious, fiveYearsAfter));
-           String[] date5 = fiveYearsPrevious.split("-");String[] date5_ = fiveYearsAfter.split("-");
-           DateRange(date5[0],date5[1],date5[2],date5_[0],date5_[1],date5_[2]);
-         
+        fiveYearsPrevious = plusFiveYears(fiveYearsPrevious);
+        fiveYearsAfter = plusFiveYears(fiveYearsAfter);
+        currentScreen.addWidget(fiveYearRangeClosingPointGraph(currentTicker, fiveYearsPrevious, fiveYearsAfter));
+        String[] date5 = fiveYearsPrevious.split("-");
+        String[] date5_ = fiveYearsAfter.split("-");
+        DateRange(date5[0], date5[1], date5[2], date5_[0], date5_[1], date5_[2]);
            
-       } else if(barChartBool && volumeVTimeBool && twoYearBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (barChartBool && volumeVTimeBool && twoYearBool && !pointsChartBool &&
+          !openingVTimeBool && !closingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
          
-           twoYearsPrevious =  plusTwoYears( twoYearsPrevious);
-           twoYearsAfter = plusTwoYears( twoYearsAfter);
-           currentScreen.addWidget(twoYearRangeVolumeBarChart(currentTicker, twoYearsPrevious, twoYearsAfter));
-           String[] date2 = twoYearsPrevious.split("-");String[] date2_ = twoYearsAfter.split("-");           
-           DateRange(date2[0],date2[1],date2[2],date2_[0],date2_[1],date2_[2]);
+        twoYearsPrevious = plusTwoYears(twoYearsPrevious);
+        twoYearsAfter = plusTwoYears(twoYearsAfter);
+        currentScreen.addWidget(twoYearRangeVolumeBarChart(currentTicker, twoYearsPrevious, twoYearsAfter));
+        String[] date2 = twoYearsPrevious.split("-");
+        String[] date2_ = twoYearsAfter.split("-");           
+        DateRange(date2[0], date2[1], date2[2], date2_[0], date2_[1], date2_[2]);
       
-       } else if(barChartBool && openingVTimeBool && twoYearBool && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (barChartBool && openingVTimeBool && twoYearBool && !pointsChartBool &&
+          !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
         
-           twoYearsPrevious =  plusTwoYears( twoYearsPrevious);
-           twoYearsAfter = plusTwoYears( twoYearsAfter);
-           currentScreen.addWidget(twoYearRangeOpeningBarChart(currentTicker, twoYearsPrevious, twoYearsAfter));
-           String[] date2 = twoYearsPrevious.split("-");String[] date2_ = twoYearsAfter.split("-");           
-           DateRange(date2[0],date2[1],date2[2],date2_[0],date2_[1],date2_[2]);
+        twoYearsPrevious = plusTwoYears(twoYearsPrevious);
+        twoYearsAfter = plusTwoYears(twoYearsAfter);
+        currentScreen.addWidget(twoYearRangeOpeningBarChart(currentTicker, twoYearsPrevious, twoYearsAfter));
+        String[] date2 = twoYearsPrevious.split("-");
+        String[] date2_ = twoYearsAfter.split("-");           
+        DateRange(date2[0], date2[1], date2[2], date2_[0], date2_[1], date2_[2]);
      
-       } else if(barChartBool && closingVTimeBool && twoYearBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (barChartBool && closingVTimeBool && twoYearBool && !pointsChartBool &&
+          !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
         
-           twoYearsPrevious = plusTwoYears( twoYearsPrevious);
-           twoYearsAfter = plusTwoYears( twoYearsAfter);
-           currentScreen.addWidget(twoYearRangeClosingBarChart(currentTicker, twoYearsPrevious, twoYearsAfter));
-           String[] date2 = twoYearsPrevious.split("-");String[] date2_ = twoYearsAfter.split("-");           
-           DateRange(date2[0],date2[1],date2[2],date2_[0],date2_[1],date2_[2]);
+        twoYearsPrevious = plusTwoYears(twoYearsPrevious);
+        twoYearsAfter = plusTwoYears(twoYearsAfter);
+        currentScreen.addWidget(twoYearRangeClosingBarChart(currentTicker, twoYearsPrevious, twoYearsAfter));
+        String[] date2 = twoYearsPrevious.split("-");
+        String[] date2_ = twoYearsAfter.split("-");           
+        DateRange(date2[0], date2[1], date2[2], date2_[0], date2_[1], date2_[2]);
         
-       }  else if(pointsChartBool && volumeVTimeBool && twoYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && volumeVTimeBool && twoYearBool && !barChartBool &&
+          !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
          
-           twoYearsPrevious =  plusTwoYears( twoYearsPrevious);
-           twoYearsAfter = plusTwoYears( twoYearsAfter);
-           currentScreen.addWidget(twoYearRangeVolumePointGraph(currentTicker, twoYearsPrevious, twoYearsAfter));
-           String[] date2 = twoYearsPrevious.split("-");String[] date2_ = twoYearsAfter.split("-");           
-           DateRange(date2[0],date2[1],date2[2],date2_[0],date2_[1],date2_[2]);
+        twoYearsPrevious = plusTwoYears(twoYearsPrevious);
+        twoYearsAfter = plusTwoYears(twoYearsAfter);
+        currentScreen.addWidget(twoYearRangeVolumePointGraph(currentTicker, twoYearsPrevious, twoYearsAfter));
+        String[] date2 = twoYearsPrevious.split("-");
+        String[] date2_ = twoYearsAfter.split("-");           
+        DateRange(date2[0], date2[1], date2[2], date2_[0], date2_[1], date2_[2]);
       
-       } else if(pointsChartBool && openingVTimeBool && twoYearBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && openingVTimeBool && twoYearBool && !barChartBool &&
+          !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
         
-           twoYearsPrevious =  plusTwoYears( twoYearsPrevious);
-           twoYearsAfter = plusTwoYears( twoYearsAfter);
-           currentScreen.addWidget(twoYearRangeOpeningPointGraph(currentTicker, twoYearsPrevious, twoYearsAfter));
-           String[] date2 = twoYearsPrevious.split("-");String[] date2_ = twoYearsAfter.split("-");           
-           DateRange(date2[0],date2[1],date2[2],date2_[0],date2_[1],date2_[2]);
+        twoYearsPrevious = plusTwoYears(twoYearsPrevious);
+        twoYearsAfter = plusTwoYears(twoYearsAfter);
+        currentScreen.addWidget(twoYearRangeOpeningPointGraph(currentTicker, twoYearsPrevious, twoYearsAfter));
+        String[] date2 = twoYearsPrevious.split("-");
+        String[] date2_ = twoYearsAfter.split("-");           
+        DateRange(date2[0], date2[1], date2[2], date2_[0], date2_[1], date2_[2]);
      
-       } else if(pointsChartBool && closingVTimeBool && twoYearBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && closingVTimeBool && twoYearBool && !barChartBool &&
+          !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
         
-           twoYearsPrevious = plusTwoYears( twoYearsPrevious);
-           twoYearsAfter = plusTwoYears( twoYearsAfter);
-           currentScreen.addWidget(twoYearRangeClosingPointGraph(currentTicker, twoYearsPrevious, twoYearsAfter));
-           String[] date2 = twoYearsPrevious.split("-");String[] date2_ = twoYearsAfter.split("-");           
-           DateRange(date2[0],date2[1],date2[2],date2_[0],date2_[1],date2_[2]);
+        twoYearsPrevious = plusTwoYears(twoYearsPrevious);
+        twoYearsAfter = plusTwoYears(twoYearsAfter);
+        currentScreen.addWidget(twoYearRangeClosingPointGraph(currentTicker, twoYearsPrevious, twoYearsAfter));
+        String[] date2 = twoYearsPrevious.split("-");
+        String[] date2_ = twoYearsAfter.split("-");           
+        DateRange(date2[0], date2[1], date2[2], date2_[0], date2_[1], date2_[2]);
         
-       } else if(barChartBool && volumeVTimeBool && oneYearBool  && !pointsChartBool && !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+      } else if (barChartBool && volumeVTimeBool && oneYearBool && !pointsChartBool &&
+          !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
          
-           oneYearsPrevious =  plusOneYears( oneYearsPrevious);
-           oneYearsAfter = plusOneYears( oneYearsAfter);
-           currentScreen.addWidget(oneYearRangeVolumeBarChart(currentTicker, oneYearsPrevious, oneYearsAfter));
-           String[] date1 = twoYearsPrevious.split("-");String[] date1_ = twoYearsAfter.split("-");           
-           DateRange(date1[0],date1[1],date1[2],date1_[0],date1_[1],date1_[2]);
+        oneYearsPrevious = plusOneYears(oneYearsPrevious);
+        oneYearsAfter = plusOneYears(oneYearsAfter);
+        currentScreen.addWidget(oneYearRangeVolumeBarChart(currentTicker, oneYearsPrevious, oneYearsAfter));
+        String[] date1 = twoYearsPrevious.split("-");
+        String[] date1_ = twoYearsAfter.split("-");           
+        DateRange(date1[0], date1[1], date1[2], date1_[0], date1_[1], date1_[2]);
       
-       } else if(barChartBool && openingVTimeBool && oneYearBool  && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+      } else if (barChartBool && openingVTimeBool && oneYearBool && !pointsChartBool &&
+          !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
         
-           oneYearsPrevious =  plusOneYears( oneYearsPrevious);
-           oneYearsAfter = plusOneYears( oneYearsAfter);
-           currentScreen.addWidget(oneYearRangeOpeningBarChart(currentTicker, oneYearsPrevious, oneYearsAfter));
-           String[] date1 = oneYearsPrevious.split("-");String[] date1_ = oneYearsAfter.split("-");           
-           DateRange(date1[0],date1[1],date1[2],date1_[0],date1_[1],date1_[2]);
+        oneYearsPrevious = plusOneYears(oneYearsPrevious);
+        oneYearsAfter = plusOneYears(oneYearsAfter);
+        currentScreen.addWidget(oneYearRangeOpeningBarChart(currentTicker, oneYearsPrevious, oneYearsAfter));
+        String[] date1 = oneYearsPrevious.split("-");
+        String[] date1_ = oneYearsAfter.split("-");           
+        DateRange(date1[0], date1[1], date1[2], date1_[0], date1_[1], date1_[2]);
      
-       } else if(barChartBool && closingVTimeBool && oneYearBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+      } else if (barChartBool && closingVTimeBool && oneYearBool && !pointsChartBool &&
+          !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
         
-           oneYearsPrevious = plusOneYears( oneYearsPrevious);
-           oneYearsAfter = plusOneYears( oneYearsAfter);
-           currentScreen.addWidget(oneYearRangeClosingBarChart(currentTicker, oneYearsPrevious, oneYearsAfter));
-           String[] date1 = oneYearsPrevious.split("-");String[] date1_ = oneYearsAfter.split("-");           
-           DateRange(date1[0],date1[1],date1[2],date1_[0],date1_[1],date1_[2]);
+        oneYearsPrevious = plusOneYears(oneYearsPrevious);
+        oneYearsAfter = plusOneYears(oneYearsAfter);
+        currentScreen.addWidget(oneYearRangeClosingBarChart(currentTicker, oneYearsPrevious, oneYearsAfter));
+        String[] date1 = oneYearsPrevious.split("-");
+        String[] date1_ = oneYearsAfter.split("-");           
+        DateRange(date1[0], date1[1], date1[2], date1_[0], date1_[1], date1_[2]);
         
-       } else if(pointsChartBool && volumeVTimeBool && oneYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && volumeVTimeBool && oneYearBool && !barChartBool &&
+          !openingVTimeBool && !closingVTimeBool  && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
          
-           oneYearsPrevious =  plusOneYears( oneYearsPrevious);
-           oneYearsAfter = plusOneYears( oneYearsAfter);
-           currentScreen.addWidget(oneYearRangeVolumePointGraph(currentTicker, oneYearsPrevious, oneYearsAfter));
-           String[] date1 = oneYearsPrevious.split("-");String[] date1_ = oneYearsAfter.split("-");           
-           DateRange(date1[0],date1[1],date1[2],date1_[0],date1_[1],date1_[2]);
+        oneYearsPrevious = plusOneYears(oneYearsPrevious);
+        oneYearsAfter = plusOneYears(oneYearsAfter);
+        currentScreen.addWidget(oneYearRangeVolumePointGraph(currentTicker, oneYearsPrevious, oneYearsAfter));
+        String[] date1 = oneYearsPrevious.split("-");
+        String[] date1_ = oneYearsAfter.split("-");           
+        DateRange(date1[0], date1[1], date1[2], date1_[0], date1_[1], date1_[2]);
       
-       } else if(pointsChartBool && openingVTimeBool && oneYearBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && openingVTimeBool && oneYearBool && !barChartBool &&
+          !volumeVTimeBool && !closingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
         
-           oneYearsPrevious =  plusOneYears( oneYearsPrevious);
-           oneYearsAfter = plusOneYears( oneYearsAfter);
-           currentScreen.addWidget(oneYearRangeOpeningPointGraph(currentTicker, oneYearsPrevious, oneYearsAfter));
-           String[] date1 = oneYearsPrevious.split("-");String[] date1_ = oneYearsAfter.split("-");           
-           DateRange(date1[0],date1[1],date1[2],date1_[0],date1_[1],date1_[2]);
+        oneYearsPrevious = plusOneYears(oneYearsPrevious);
+        oneYearsAfter = plusOneYears(oneYearsAfter);
+        currentScreen.addWidget(oneYearRangeOpeningPointGraph(currentTicker, oneYearsPrevious, oneYearsAfter));
+        String[] date1 = oneYearsPrevious.split("-");
+        String[] date1_ = oneYearsAfter.split("-");           
+        DateRange(date1[0], date1[1], date1[2], date1_[0], date1_[1], date1_[2]);
        
-     
-       } else if(pointsChartBool && closingVTimeBool && oneYearBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+      } else if (pointsChartBool && closingVTimeBool && oneYearBool && !barChartBool &&
+          !volumeVTimeBool && !openingVTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
         
-           oneYearsPrevious = plusOneYears( oneYearsPrevious);
-           oneYearsAfter = plusOneYears( oneYearsAfter);
-           currentScreen.addWidget(oneYearRangeClosingPointGraph(currentTicker, oneYearsPrevious, oneYearsAfter));
-           String[] date1 = oneYearsPrevious.split("-");String[] date1_ = oneYearsAfter.split("-");           
-           DateRange(date1[0],date1[1],date1[2],date1_[0],date1_[1],date1_[2]);
+        oneYearsPrevious = plusOneYears(oneYearsPrevious);
+        oneYearsAfter = plusOneYears(oneYearsAfter);
+        currentScreen.addWidget(oneYearRangeClosingPointGraph(currentTicker, oneYearsPrevious, oneYearsAfter));
+        String[] date1 = oneYearsPrevious.split("-");
+        String[] date1_ = oneYearsAfter.split("-");           
+        DateRange(date1[0], date1[1], date1[2], date1_[0], date1_[1], date1_[2]);
         
-       }
-     currentScreen.addWidget(dataSlider);
-     stockLargestChange();
-     dateInRangeList.clear();
-     break;
+      }
+      
+      currentScreen.addWidget(dataSlider);
+      stockLargestChange();
+      dateInRangeList.clear();
+      break;
      
-    case EVENT_NULL:
-      focus = EVENT_NULL;
+    case NULL:
+      focus = NULL;
       break;
     }
-    if (focus != EVENT_NULL) {
+    
+    if (focus != NULL) {
       break;
     }
   }
-
-  //println(focus);
 }
 
 // Yifan Zhu, Added mouseDragged method for dragging the slider,
