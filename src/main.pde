@@ -1062,9 +1062,9 @@ void mousePressed() {
   }
 }
 
-// Yifan Zhu,ra method for dragging the slider
+// Dragging the slider
 void mouseDragged() {
-  if (focus == EVENT_SLIDEWIDGET) {
+  if (focus == SLIDE_WIDGET) {
     // 138 is the upper bound of the slideWidget
     if (mouseY < 138 + sliderHeight / 2) {
       slider.setPositionY(138);
@@ -1089,24 +1089,21 @@ void mouseDragged() {
       }
     }
   }
-//Tim added the the ability to drag the data slider along the dataSlideWidget track
-//350 is the left most edge of the track for the data slider
-//750 is the right most edge for the track for the data slider, 18/04/2020
-  if (focus == EVENT_DATASLIDEWIDGET) {
-    if (mouseX<450+sliderWidth/2) {
+  
+  // 350 is the left most edge of the track for the data slider
+  // 750 is the right most edge for the track for the data slider, 18/04/2020
+  if (focus == DATA_SLIDE_WIDGET) {
+    if (mouseX < 450 + sliderWidth / 2) {
       dataSlider.setPositionX(450);
-    } else if (mouseX>850-sliderWidth/2) {
+    } else if (mouseX > 850 - sliderWidth / 2) {
       dataSlider.setPositionX(850 - sliderWidth);
     } else {
-      dataSlider.setPositionX(mouseX-sliderWidth/2);
+      dataSlider.setPositionX(mouseX - sliderWidth / 2);
     }
   }
 }
 
-// Yifan Zhu, Added keyPressed method for entering texts, 4pm, 17/3/2020
-//Ruxin, clear the resultList when a new search starts, 1am, 19/3
-//Ruxin, added cases where user are searching for specific year/month/day, 25/3
-//Ruxin, added cases for the searhing end dates, 02/04, 9pm
+// Entering texts
 void keyPressed() {
   if (focus == SEARCH_WIDGET && searchWidget != null) {
     // Yifan Zhu, Added the function that the font of the
