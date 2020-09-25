@@ -1106,9 +1106,6 @@ void mouseDragged() {
 // Entering texts
 void keyPressed() {
   if (focus == SEARCH_WIDGET && searchWidget != null) {
-    // Yifan Zhu, Added the function that the font of the
-    // label of the searchWidget depends on the status
-    // of the input, 11pm, 05/04/2020
     if (searchWidget.label.equals("Type...")) {
       searchWidget.label = "";
     }
@@ -1120,98 +1117,95 @@ void keyPressed() {
       searchWidget.label = "Type...";
       searchWidget.setLabelColor(200);
     }
-    //resultList.clear();
-    //currentScreen.resultNo=0;
     resultStock = null;
-    //Ruxin, editted the textbox for defult input, 10pm,12/04
-  } else if (focus == SEARCH_SPECIFIC_YEAR && searchSpecificYear != null) {
-    if (searchSpecificYear.label.equals("yyyy")) {
-      searchSpecificYear.label = "";
+  } else if (focus == SEARCH_SPECIFIC_YEAR_START && searchSpecificYearStart != null) {
+    if (searchSpecificYearStart.label.equals("yyyy")) {
+      searchSpecificYearStart.label = "";
     }
-    if( (key <= '9' && key >= '0') || key == 8){
-    searchSpecificYear.append(key);
+    if ((key <= '9' && key >= '0') || key == 8) {
+      searchSpecificYearStart.append(key);
     }
-    if (!searchSpecificYear.label.equals("yyyy")) {
-      searchSpecificYear.setLabelColor(0);
+    if (!searchSpecificYearStart.label.equals("yyyy")) {
+      searchSpecificYearStart.setLabelColor(0);
     }
-    if (searchSpecificYear.label.equals("")) {
-      searchSpecificYear.label = "yyyy";
-      searchSpecificYear.setLabelColor(200);
+    if (searchSpecificYearStart.label.equals("")) {
+      searchSpecificYearStart.label = "yyyy";
+      searchSpecificYearStart.setLabelColor(200);
     }
-  } else if (focus == SEARCH_SPECIFIC_MON && searchSpecificMon != null) {
-    if (searchSpecificMon.label.equals("mm")) {
-      searchSpecificMon.label = "";
+  } else if (focus == SEARCH_SPECIFIC_MON_START && searchSpecificMonStart != null) {
+    if (searchSpecificMonStart.label.equals("mm")) {
+      searchSpecificMonStart.label = "";
     }
-    if( (key <= '9' && key >= '0') || key == 8){
-    searchSpecificMon.append(key);
+    if ((key <= '9' && key >= '0') || key == 8) {
+      searchSpecificMonStart.append(key);
     }
-    if (!searchSpecificMon.label.equals("mm")) {
-      searchSpecificMon.setLabelColor(0);
+    if (!searchSpecificMonStart.label.equals("mm")) {
+      searchSpecificMonStart.setLabelColor(0);
     }
-    if (searchSpecificMon.label.equals("")) {
-      searchSpecificMon.label = "mm";
-      searchSpecificMon.setLabelColor(200);
+    if (searchSpecificMonStart.label.equals("")) {
+      searchSpecificMonStart.label = "mm";
+      searchSpecificMonStart.setLabelColor(200);
     }
-  } else if (focus == SEARCH_SPECIFIC_DAY && searchSpecificDay != null) {
-    if (searchSpecificDay.label.equals("dd")) {
-      searchSpecificDay.label = "";
+  } else if (focus == SEARCH_SPECIFIC_DAY_START && searchSpecificDayStart != null) {
+    if (searchSpecificDayStart.label.equals("dd")) {
+      searchSpecificDayStart.label = "";
     }
-    if( (key <= '9' && key >= '0') || key == 8){
-    searchSpecificDay.append(key);
+    if ((key <= '9' && key >= '0') || key == 8) {
+      searchSpecificDayStart.append(key);
     }
-    if (!searchSpecificDay.label.equals("dd")) {
-      searchSpecificDay.setLabelColor(0);
+    if (!searchSpecificDayStart.label.equals("dd")) {
+      searchSpecificDayStart.setLabelColor(0);
     }
-    if (searchSpecificDay.label.equals("")) {
-      searchSpecificDay.label = "dd";
-      searchSpecificDay.setLabelColor(200);
+    if (searchSpecificDayStart.label.equals("")) {
+      searchSpecificDayStart.label = "dd";
+      searchSpecificDayStart.setLabelColor(200);
     }
-  } else if (focus == SEARCH_SPECIFIC_YEAR_1 && searchSpecificYear_1 != null) {
-    if (searchSpecificYear_1.label.equals("yyyy")) {
-      searchSpecificYear_1.label = "";
+  } else if (focus == SEARCH_SPECIFIC_YEAR_END && searchSpecificYearEnd != null) {
+    if (searchSpecificYearEnd.label.equals("yyyy")) {
+      searchSpecificYearEnd.label = "";
     }
-    if( (key <= '9' && key >= '0') || key == 8){
-    searchSpecificYear_1.append(key);
+    if ((key <= '9' && key >= '0') || key == 8) {
+      searchSpecificYearEnd.append(key);
     }
-    if (!searchSpecificYear_1.label.equals("yyyy")) {
-      searchSpecificYear_1.setLabelColor(0);
+    if (!searchSpecificYearEnd.label.equals("yyyy")) {
+      searchSpecificYearEnd.setLabelColor(0);
     }
-    if (searchSpecificYear_1.label.equals("")) {
-      searchSpecificYear_1.label = "yyyy";
-      searchSpecificYear_1.setLabelColor(200);
+    if (searchSpecificYearEnd.label.equals("")) {
+      searchSpecificYearEnd.label = "yyyy";
+      searchSpecificYearEnd.setLabelColor(200);
     }
-  } else if (focus == SEARCH_SPECIFIC_MON_1 && searchSpecificMon_1 != null) {
-    if (searchSpecificMon_1.label.equals("mm")) {
-      searchSpecificMon_1.label = "";
+  } else if (focus == SEARCH_SPECIFIC_MON_END && searchSpecificMonEnd != null) {
+    if (searchSpecificMonEnd.label.equals("mm")) {
+      searchSpecificMonEnd.label = "";
     }
-    if( (key <= '9' && key >= '0') || key == 8){
-    searchSpecificMon_1.append(key);
+    if ((key <= '9' && key >= '0') || key == 8) {
+      searchSpecificMonEnd.append(key);
     }
-    if (!searchSpecificMon_1.label.equals("mm")) {
-      searchSpecificMon_1.setLabelColor(0);
+    if (!searchSpecificMonEnd.label.equals("mm")) {
+      searchSpecificMonEnd.setLabelColor(0);
     }
-    if (searchSpecificMon_1.label.equals("")) {
-      searchSpecificMon_1.label = "mm";
-      searchSpecificMon_1.setLabelColor(200);
+    if (searchSpecificMonEnd.label.equals("")) {
+      searchSpecificMonEnd.label = "mm";
+      searchSpecificMonEnd.setLabelColor(200);
     }
-  } else if (focus == SEARCH_SPECIFIC_DAY_1 && searchSpecificDay_1 != null) {
-    if (searchSpecificDay_1.label.equals("dd")) {
-      searchSpecificDay_1.label = "";
+  } else if (focus == SEARCH_SPECIFIC_DAY_END && searchSpecificDayEnd != null) {
+    if (searchSpecificDayEnd.label.equals("dd")) {
+      searchSpecificDayEnd.label = "";
     }
-    if( (key <= '9' && key >= '0') || key == 8){
-    searchSpecificDay_1.append(key);
+    if ((key <= '9' && key >= '0') || key == 8) {
+      searchSpecificDayEnd.append(key);
     }
-    if (!searchSpecificDay_1.label.equals("dd")) {
-      searchSpecificDay_1.setLabelColor(0);
+    if (!searchSpecificDayEnd.label.equals("dd")) {
+      searchSpecificDayEnd.setLabelColor(0);
     }
-    if (searchSpecificDay_1.label.equals("")) {
-      searchSpecificDay_1.label = "dd";
-      searchSpecificDay_1.setLabelColor(200);
+    if (searchSpecificDayEnd.label.equals("")) {
+      searchSpecificDayEnd.label = "dd";
+      searchSpecificDayEnd.setLabelColor(200);
     }
   }
 }
 
-boolean isNumber(String str){
+boolean isNumber(String str) {
     String reg = "^[0-9]+(.[0-9]+)?$";
     return str.matches(reg);
 }
@@ -1263,14 +1257,14 @@ void stockInfo(String label) {
   }
 }
 
-//Ruxin, added stockLargestChange method for searhing largest change on one day/month/year, 25/03, 11pm
-//Ruxin, simplified the method and changed it for searhing in a date range, 02/04, 10pm
+// Searhing the largest change on one day/month/year
 void stockLargestChange() {
-  LargestChange = 0;LchangeDate="";
+  LargestChange = 0;
+  LchangeDate = "";
   for (Datapoints data : dateInRangeList) {
     float temp = (float)data.Lchange;
     float temp1 = (float)LargestChange;
-    if ( abs(temp) > abs(temp1) ) {
+    if (abs(temp) > abs(temp1)) {
       LargestChange = data.Lchange;
       LchangeDate = data.sDate;
     }
@@ -1314,51 +1308,42 @@ void DateRange(String yearStart, String monthStart, String dayStart, String year
   }
 }
 
-String minusFiveYears(String dateToBeChanged){
-  
+String minusFiveYears(String dateToBeChanged) {
   String[] date = dateToBeChanged.split("-");
   int year = Integer.parseInt(date[0]);
   year -= 5;
-  //println("a" + year);
   return year + "-" + date[1] + "-" + date[2];
 }
 
-String plusFiveYears(String dateToBeChanged){
-  
+String plusFiveYears(String dateToBeChanged) { 
   String[] date = dateToBeChanged.split("-");
   int year = Integer.parseInt(date[0]);
   year += 5;
   return year + "-" + date[1] + "-" + date[2];
 }
 
-String minusTwoYears(String dateToBeChanged){
-  
+String minusTwoYears(String dateToBeChanged) {
   String[] date = dateToBeChanged.split("-");
   int year = Integer.parseInt(date[0]);
   year -= 2;
-  //println("a" + year);
   return year + "-" + date[1] + "-" + date[2];
 }
 
-String plusTwoYears(String dateToBeChanged){
-  
+String plusTwoYears(String dateToBeChanged) {
   String[] date = dateToBeChanged.split("-");
   int year = Integer.parseInt(date[0]);
   year += 2;
   return year + "-" + date[1] + "-" + date[2];
 }
 
-String minusOneYears(String dateToBeChanged){
-  
+String minusOneYears(String dateToBeChanged) {
   String[] date = dateToBeChanged.split("-");
   int year = Integer.parseInt(date[0]);
   year -= 1;
-  //println("a" + year);
   return year + "-" + date[1] + "-" + date[2];
 }
 
-String plusOneYears(String dateToBeChanged){
-  
+String plusOneYears(String dateToBeChanged) {
   String[] date = dateToBeChanged.split("-");
   int year = Integer.parseInt(date[0]);
   year += 1;
@@ -1366,28 +1351,25 @@ String plusOneYears(String dateToBeChanged){
 }
 
 
-//Matteo added a barchart method and a VolumeBarchart Class 
-//The barchart represents the volume over the entire existence(time) of the stock.
-// Matteo changed back to volumebarChart
+// Creating the volume bar chart
 Widget createVolumeBarChart(String ticker) {
-  println("Vol chart of " +  ticker);
-  int currentVolume = 0;
+  println("Vol chart of " + ticker);
+  int maxVolume = 0;
   ArrayList <Datapoints> volumeDate = new ArrayList();
-  // Ruxin, changed the for loop from showing all result to showing the result in
-  // the searhed date range, 01/04, 11pm
+  
   for (int i = 0; i < dateInRangeList.size(); i++) {
     if (ticker.equals(dateInRangeList.get(i).ticker())) {
       volumeDate.add(dateInRangeList.get(i)); 
       int newVolume = dateInRangeList.get(i).volume();
-      if (newVolume > currentVolume) {
-        currentVolume = newVolume;
+      if (newVolume > maxVolume) {
+        maxVolume = newVolume;
       }
     }
   }
   sliderWidth = 400 * 45 / volumeDate.size();
   Collections.sort(volumeDate);
-  return new VolumeBarChart(volumeDate, currentVolume, sliderWidth, 0, false);
-  }
+  return new VolumeBarChart(volumeDate, maxVolume, sliderWidth, 0, false);
+}
      
 Widget fiveYearRangeVolumeBarChart(String ticker, String fiveYearsPrevious, String fiveYearsAfter){
   int deleteIndex = -1;
