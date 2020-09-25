@@ -1062,8 +1062,7 @@ void mousePressed() {
   }
 }
 
-// Yifan Zhu, Added mouseDragged method for dragging the slider,
-// 10pm, 30/3/2020
+// Yifan Zhu,ra method for dragging the slider
 void mouseDragged() {
   if (focus == EVENT_SLIDEWIDGET) {
     // 138 is the upper bound of the slideWidget
