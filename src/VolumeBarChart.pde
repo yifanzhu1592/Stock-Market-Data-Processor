@@ -119,7 +119,7 @@ class VolumeBarChart extends Widget {
       text("NO DATA TO DISPLAY", 525, 365);
     }
 
-    if(rangeValue == 5) {
+    if (rangeValue == 5) {
 
       String[] firstDate = fiveYearsPrevious.split("-");
       String[] secondDate = fiveYearsAfter.split("-");
