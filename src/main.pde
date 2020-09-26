@@ -2012,74 +2012,63 @@ Widget fiveYearRangeVolumePointGraph(String ticker, String fiveYearsPrevious, St
   return new VolumePointGraph(fiveYearVolumeDate, currentVolume, sliderWidth, 5, noDataToDisplay); 
 }
 
-Widget twoYearRangeVolumePointGraph(String ticker, String twoYearsPrevious, String twoYearsAfter){
+Widget twoYearRangeVolumePointGraph(String ticker, String twoYearsPrevious, String twoYearsAfter) {
   int deleteIndex = -1;
   int currentVolume = 0;
   boolean noDataToDisplay = false;
   Date d1 = null;
   Date d2 = null;
-  Date d3 = null; 
+  Date d3 = null;
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof VolumePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof VolumePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
   
-   
-  ArrayList <Datapoints> twoYearVolumeDate = new ArrayList();
+  ArrayList<Datapoints> twoYearVolumeDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(twoYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(twoYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(twoYearsPrevious);
+    d3 = dateFormat.parse(twoYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       twoYearVolumeDate.add(dataList.get(i));  
-      int newVolume = dataList.get(i).volume();
-      if (newVolume > currentVolume) {
-        currentVolume = newVolume;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        twoYearVolumeDate.add(dataList.get(i));  
+        int newVolume = dataList.get(i).volume();
+        if (newVolume > currentVolume) {
+          currentVolume = newVolume;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(twoYearVolumeDate);
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-   if(twoYearVolumeDate.size() <45){
-     if(twoYearVolumeDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else {
-     sliderWidth =  400 * 45 / twoYearVolumeDate.size();
+  
+  if (twoYearVolumeDate.size() < 45) {
+    if (twoYearVolumeDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth = 400;
+  } else {
+    sliderWidth =  400 * 45 / twoYearVolumeDate.size();
   }
-  return new VolumePointGraph(twoYearVolumeDate, currentVolume,sliderWidth, 2, noDataToDisplay); 
+  return new VolumePointGraph(twoYearVolumeDate, currentVolume, sliderWidth, 2, noDataToDisplay); 
 }
 
-     
-Widget oneYearRangeVolumePointGraph(String ticker, String oneYearsPrevious, String oneYearsAfter){
+Widget oneYearRangeVolumePointGraph(String ticker, String oneYearsPrevious, String oneYearsAfter) {
   int deleteIndex = -1;
   int currentVolume = 0;
   boolean noDataToDisplay = false;
@@ -2087,82 +2076,69 @@ Widget oneYearRangeVolumePointGraph(String ticker, String oneYearsPrevious, Stri
   Date d2 = null;
   Date d3 = null; 
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof VolumePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof VolumePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
   
-   
-  ArrayList <Datapoints> oneYearVolumeDate = new ArrayList();
+  ArrayList<Datapoints> oneYearVolumeDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(oneYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(oneYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(oneYearsPrevious);
+    d3 = dateFormat.parse(oneYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       oneYearVolumeDate.add(dataList.get(i));  
-      int newVolume = dataList.get(i).volume();
-      if (newVolume > currentVolume) {
-        currentVolume = newVolume;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        oneYearVolumeDate.add(dataList.get(i));  
+        int newVolume = dataList.get(i).volume();
+        if (newVolume > currentVolume) {
+          currentVolume = newVolume;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(oneYearVolumeDate);
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-   if(oneYearVolumeDate.size() <45){
-     if(oneYearVolumeDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else {
+
+  if (oneYearVolumeDate.size() < 45) {
+    if (oneYearVolumeDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth =  400;
+  } else {
      sliderWidth =  400 * 45 / oneYearVolumeDate.size();
   }
   return new VolumePointGraph(oneYearVolumeDate, currentVolume, sliderWidth, 1, noDataToDisplay); 
 }
 
-//Ceated by Tim, a point graph to display Opening Price over a specified amount of time
-//for a chosen company
 Widget createOpeningPricePointGraph(String ticker) {
   int deleteIndex = -1;
   double currentOpening = 0;
-
+  
   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
+    if (currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
 
-  ArrayList <Datapoints> openingDate = new ArrayList();
+  ArrayList<Datapoints> openingDate = new ArrayList();
 
-  //Ruxin, changed the for loop from showing all result to showing the result in
-  // a date range, 09/04, 3pm
   for (int i = 0; i < dateInRangeList.size(); i++) {
     if (ticker.equals(dateInRangeList.get(i).ticker())) {
       openingDate.add(dateInRangeList.get(i)); 
@@ -2172,12 +2148,12 @@ Widget createOpeningPricePointGraph(String ticker) {
       }
     }
   }
-  sliderWidth =  400 * 45 / openingDate.size();
+  sliderWidth = 400 * 45 / openingDate.size();
   Collections.sort(openingDate);
-  return new OpeningPricePointGraph(openingDate, currentOpening,sliderWidth, 0, false);}
+  return new OpeningPricePointGraph(openingDate, currentOpening, sliderWidth, 0, false);
+}
 
-
-Widget fiveYearRangeOpeningPointGraph(String ticker, String fiveYearsPrevious, String fiveYearsAfter){
+Widget fiveYearRangeOpeningPointGraph(String ticker, String fiveYearsPrevious, String fiveYearsAfter) {
   int deleteIndex = -1;
   double currentOpening = 0;
   boolean noDataToDisplay = false;
@@ -2185,223 +2161,184 @@ Widget fiveYearRangeOpeningPointGraph(String ticker, String fiveYearsPrevious, S
   Date d2 = null;
   Date d3 = null; 
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
-  
+  }
    
-  ArrayList <Datapoints> fiveYearOpeningDate = new ArrayList();
+  ArrayList<Datapoints> fiveYearOpeningDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(fiveYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(fiveYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(fiveYearsPrevious);
+    d3 = dateFormat.parse(fiveYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       fiveYearOpeningDate.add(dataList.get(i));  
-      double newOpening = dataList.get(i).open_price();
-      if (newOpening > currentOpening) {
-        currentOpening = newOpening;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) { 
+        fiveYearOpeningDate.add(dataList.get(i));  
+        double newOpening = dataList.get(i).open_price();
+        if (newOpening > currentOpening) {
+          currentOpening = newOpening;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(fiveYearOpeningDate);
   
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-  if(fiveYearOpeningDate.size() <45){
-     if(fiveYearOpeningDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else {
-     sliderWidth =  400 * 45 / fiveYearOpeningDate.size();
+  if (fiveYearOpeningDate.size() < 45) {
+    if (fiveYearOpeningDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth =  400;
+  } else {
+    sliderWidth =  400 * 45 / fiveYearOpeningDate.size();
   }
   return new OpeningPricePointGraph(fiveYearOpeningDate, currentOpening, sliderWidth, 5, noDataToDisplay); 
 }
 
-
-Widget twoYearRangeOpeningPointGraph(String ticker, String twoYearsPrevious, String twoYearsAfter){
+Widget twoYearRangeOpeningPointGraph(String ticker, String twoYearsPrevious, String twoYearsAfter) {
   int deleteIndex = -1;
   double currentOpening = 0;
   boolean noDataToDisplay = false;
   Date d1 = null;
   Date d2 = null;
-  Date d3 = null; 
+  Date d3 = null;
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
-  
+  }
    
-  ArrayList <Datapoints> twoYearOpeningDate = new ArrayList();
+  ArrayList<Datapoints> twoYearOpeningDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(twoYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(twoYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(twoYearsPrevious);
+    d3 = dateFormat.parse(twoYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       twoYearOpeningDate.add(dataList.get(i));  
-      double newOpening = dataList.get(i).open_price();
-      if (newOpening > currentOpening) {
-        currentOpening = newOpening;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        twoYearOpeningDate.add(dataList.get(i));
+        double newOpening = dataList.get(i).open_price();
+        if (newOpening > currentOpening) {
+          currentOpening = newOpening;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(twoYearOpeningDate);
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-   if(twoYearOpeningDate.size() <45){
-     if(twoYearOpeningDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else {
-     sliderWidth =  400 * 45 / twoYearOpeningDate.size();
+  
+  if (twoYearOpeningDate.size() < 45) {
+    if (twoYearOpeningDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth = 400;
+  } else {
+    sliderWidth = 400 * 45 / twoYearOpeningDate.size();
   }
   return new OpeningPricePointGraph(twoYearOpeningDate, currentOpening,sliderWidth, 2, noDataToDisplay); 
 }
 
-
-Widget oneYearRangeOpeningPointGraph(String ticker, String oneYearsPrevious, String oneYearsAfter){
+Widget oneYearRangeOpeningPointGraph(String ticker, String oneYearsPrevious, String oneYearsAfter) {
   int deleteIndex = -1;
   double currentOpening = 0;
   boolean noDataToDisplay = false;
   Date d1 = null;
   Date d2 = null;
-  Date d3 = null; 
+  Date d3 = null;
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof OpeningPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
   
-   
-  ArrayList <Datapoints> oneYearOpeningDate = new ArrayList();
+  ArrayList<Datapoints> oneYearOpeningDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(oneYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(oneYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(oneYearsPrevious);
+    d3 = dateFormat.parse(oneYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       oneYearOpeningDate.add(dataList.get(i));  
-      double newOpening = dataList.get(i).open_price();
-      if (newOpening > currentOpening) {
-        currentOpening = newOpening;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        oneYearOpeningDate.add(dataList.get(i));
+        double newOpening = dataList.get(i).open_price();
+        if (newOpening > currentOpening) {
+          currentOpening = newOpening;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(oneYearOpeningDate);
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-    if(oneYearOpeningDate.size() <45){
-     if(oneYearOpeningDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else{
-     sliderWidth =  400 * 45 / oneYearOpeningDate.size();
+
+  if (oneYearOpeningDate.size() < 45) {
+    if (oneYearOpeningDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth = 400;
+  } else {
+    sliderWidth = 400 * 45 / oneYearOpeningDate.size();
   }
-  return new OpeningPricePointGraph(oneYearOpeningDate, currentOpening,sliderWidth, 1, noDataToDisplay); 
+  return new OpeningPricePointGraph(oneYearOpeningDate, currentOpening, sliderWidth, 1, noDataToDisplay);
 }
 
-
-
-
-//Ceated by Tim, a point graph to display Closing Price over a specified amount of time
-//for a chosen company
 Widget createClosingPricePointGraph(String ticker) {
   int deleteIndex = -1;
   double currentClosing = 0;
 
   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
+    if (currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
 
-  ArrayList <Datapoints> closingDate = new ArrayList();
+  ArrayList<Datapoints> closingDate = new ArrayList();
 
-  //Ruxin, changed the for loop from showing all result to showing the result in
-  // a date range, 09/04, 3pm
   for (int i = 0; i < dateInRangeList.size(); i++) {
     if (ticker.equals(dateInRangeList.get(i).ticker())) {
-      closingDate.add(dateInRangeList.get(i)); 
+      closingDate.add(dateInRangeList.get(i));
       double newClosingPrice = dateInRangeList.get(i).close_price();
       if (newClosingPrice > currentClosing) {
         currentClosing = newClosingPrice;
@@ -2410,244 +2347,183 @@ Widget createClosingPricePointGraph(String ticker) {
   }
   sliderWidth =  400 * 45 / closingDate.size();
   Collections.sort(closingDate);
-  return new ClosingPricePointGraph(closingDate, currentClosing, sliderWidth, 0, false );}
+  return new ClosingPricePointGraph(closingDate, currentClosing, sliderWidth, 0, false);
+}
 
-
-Widget fiveYearRangeClosingPointGraph(String ticker, String fiveYearsPrevious, String fiveYearsAfter){
+Widget fiveYearRangeClosingPointGraph(String ticker, String fiveYearsPrevious, String fiveYearsAfter) {
   int deleteIndex = -1;
   double currentClosing = 0;
   boolean noDataToDisplay = false;
   Date d1 = null;
   Date d2 = null;
-  Date d3 = null; 
+  Date d3 = null;
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
   
-   
-  ArrayList <Datapoints> fiveYearClosingDate = new ArrayList();
+  ArrayList<Datapoints> fiveYearClosingDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(fiveYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(fiveYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(fiveYearsPrevious);
+    d3 = dateFormat.parse(fiveYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       fiveYearClosingDate.add(dataList.get(i));  
-      double newClosing = dataList.get(i).close_price();
-      if (newClosing > currentClosing) {
-        currentClosing = newClosing;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        fiveYearClosingDate.add(dataList.get(i));
+        double newClosing = dataList.get(i).close_price();
+        if (newClosing > currentClosing) {
+          currentClosing = newClosing;
+        }
       }
     }
-  }
   }
   
   Collections.sort(fiveYearClosingDate);
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-  if(fiveYearClosingDate.size() <45){
-     if(fiveYearClosingDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else {
-     sliderWidth =  400 * 45 / fiveYearClosingDate.size();
+  
+  if (fiveYearClosingDate.size() < 45) {
+    if (fiveYearClosingDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth =  400;
+  } else {
+    sliderWidth =  400 * 45 / fiveYearClosingDate.size();
   }
-  return new ClosingPricePointGraph(fiveYearClosingDate, currentClosing ,sliderWidth, 5, noDataToDisplay); 
+  return new ClosingPricePointGraph(fiveYearClosingDate, currentClosing , sliderWidth, 5, noDataToDisplay);
 }
 
-
-Widget twoYearRangeClosingPointGraph(String ticker, String twoYearsPrevious, String twoYearsAfter){
+Widget twoYearRangeClosingPointGraph(String ticker, String twoYearsPrevious, String twoYearsAfter) {
   int deleteIndex = -1;
   double currentClosing = 0;
   boolean noDataToDisplay = false;
   Date d1 = null;
   Date d2 = null;
-  Date d3 = null; 
+  Date d3 = null;
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
-  
+  }
    
-  ArrayList <Datapoints> twoYearClosingDate = new ArrayList();
+  ArrayList<Datapoints> twoYearClosingDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(twoYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(twoYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(twoYearsPrevious);
+    d3 = dateFormat.parse(twoYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       twoYearClosingDate.add(dataList.get(i));  
-      double newClosing = dataList.get(i).close_price();
-      if (newClosing > currentClosing) {
-        currentClosing = newClosing;
+      try {
+        d2 = dateFormat.parse(dataList.get(i).sDate())；
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        twoYearClosingDate.add(dataList.get(i));  
+        double newClosing = dataList.get(i).close_price();
+        if (newClosing > currentClosing) {
+          currentClosing = newClosing;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(twoYearClosingDate);
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-  if(twoYearClosingDate.size() <45){
-     if(twoYearClosingDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth = 400;
-  }else {
-   sliderWidth =  400 * 45 / twoYearClosingDate.size();
+
+  if (twoYearClosingDate.size() < 45) {
+    if (twoYearClosingDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth = 400;
+  } else {
+    sliderWidth = 400 * 45 / twoYearClosingDate.size();
   }
-  return new ClosingPricePointGraph(twoYearClosingDate, currentClosing,sliderWidth, 2, noDataToDisplay); 
+  return new ClosingPricePointGraph(twoYearClosingDate, currentClosing, sliderWidth, 2, noDataToDisplay); 
 }
 
-Widget oneYearRangeClosingPointGraph(String ticker, String oneYearsPrevious, String oneYearsAfter){
+Widget oneYearRangeClosingPointGraph(String ticker, String oneYearsPrevious, String oneYearsAfter) {
   int deleteIndex = -1;
   double currentClosing = 0;
   boolean noDataToDisplay = false;
   Date d1 = null;
   Date d2 = null;
-  Date d3 = null; 
+  Date d3 = null;
   
- 
-   for (int index = 0; index < currentScreen.Widgets.size(); index++) {
-    if ( currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
+  for (int index = 0; index < currentScreen.Widgets.size(); index++) {
+    if (currentScreen.Widgets.get(index) instanceof ClosingPricePointGraph) {
       deleteIndex = index;
     }
   }
-  if (deleteIndex != -1)
+  if (deleteIndex != -1) {
     currentScreen.Widgets.remove(deleteIndex);
+  }
   
-   
-  ArrayList <Datapoints> oneYearClosingDate = new ArrayList();
+  ArrayList<Datapoints> oneYearClosingDate = new ArrayList();
   
-    try {
-          d1 = dateFormat.parse(oneYearsPrevious);
-          //println("=d1" + d1);
-          d3 = dateFormat.parse(oneYearsAfter);
-          
-
-            }  catch (Exception e) {
-            println("Unable to parse date");
-      } 
+  try {
+    d1 = dateFormat.parse(oneYearsPrevious);
+    d3 = dateFormat.parse(oneYearsAfter);
+  } catch (Exception e) {
+    println("Unable to parse date");
+  }
 
   for (int i = 0; i < dataList.size(); i++) {
     if (ticker.equals(dataList.get(i).ticker())) {
-        try {
-                d2 = dateFormat.parse( dataList.get(i).sDate()); 
- 
-            } catch (Exception e) {
-
-            println("Unable to parse date");
-          } 
-     if( d1.compareTo(d2) < 0
-     && 
-     d3.compareTo(d2) > 0
-     ){ 
-       oneYearClosingDate.add(dataList.get(i));  
-      double newClosing = dataList.get(i).close_price();
-      if (newClosing > currentClosing) {
-        currentClosing = newClosing;
+      try {
+        d2 = dateFormat.parse( dataList.get(i).sDate());
+      } catch (Exception e) {
+        println("Unable to parse date");
+      }
+      if (d1.compareTo(d2) < 0 && d3.compareTo(d2) > 0) {
+        oneYearClosingDate.add(dataList.get(i));
+        double newClosing = dataList.get(i).close_price();
+        if (newClosing > currentClosing) {
+          currentClosing = newClosing;
+        }
       }
     }
   }
-  }
-  
   
   Collections.sort(oneYearClosingDate);
   
-  //Ruxin, changed the sliderwidth so it fits the chart, 22/04, 5pm
-  if(oneYearClosingDate.size() <45){
-     if(oneYearClosingDate.size() == 0){
-         noDataToDisplay = true;
-      }
-     sliderWidth =  400;
-  }else{
-     sliderWidth =  400 * 45 / oneYearClosingDate.size();
+  if (oneYearClosingDate.size() < 45) {
+    if (oneYearClosingDate.size() == 0) {
+      noDataToDisplay = true;
+    }
+    sliderWidth =  400;
+  } else {
+    sliderWidth =  400 * 45 / oneYearClosingDate.size();
   }
   
   return new ClosingPricePointGraph(oneYearClosingDate, currentClosing, sliderWidth, 1, noDataToDisplay); 
 }
-/* deleted by Ruxin, changed to a new menu, 9pm, 15/04
-// Added by Matteo 01/04/20 
-// A menu that deals with all the queries for the chart representation
-void createChartMenu(){
-  
-  
-    deletePreviousChart();
-  
-    println("I'm here");
-    
-    currentScreen.addWidget(barChart);
-    currentScreen.addWidget(pointsChart);
-    currentScreen.addWidget(volumeVsTime); 
-    currentScreen.addWidget(openingVsTime);
-    currentScreen.addWidget(closingVsTime); 
-    currentScreen.addWidget(allTime);
-    //currentScreen.addWidget(selectDate);
-    currentScreen.addWidget(fiveYear);
-    currentScreen.addWidget(twoYear);
-    currentScreen.addWidget(oneYear);
-    currentScreen.addWidget(selectChart2);
-  
-}
-*/
-
-// Added by Matteo 01/04/20 
-// A menu that deals with all the queries for the chart representation
 
 void createChart(String ticker){
-    
-    //deleteMenu();
 
-//Time, added the dataSlideWidget and dataSlider to each graph, 18/04/2020
-//Ruxin, added date range cases, 11pm,21/04/2020 
-   currentScreen.Widgets.remove(dataSlideWidget);
-   currentScreen.Widgets.remove(dataSlider);
+  currentScreen.Widgets.remove(dataSlideWidget);
+  currentScreen.Widgets.remove(dataSlider);
+  
   if (barChartBool && volumeVTimeBool && allTimeBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool) {
     currentScreen.addWidget(createVolumeBarChart(ticker));
   } 
