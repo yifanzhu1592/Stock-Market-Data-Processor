@@ -23,7 +23,7 @@ class VolumeBarChart extends Widget {
     barFont = loadFont("Bahnschrift-15.vlw");  
     smallXFont = loadFont("Bahnschrift-10.vlw");
     spacing = height / (float)numberOfDates;
-    dataSlider = new Slider(850 - sliderWidth, 565, sliderWidth, 20, EVENT_NULL, 10, 10, 10, 10);
+    dataSlider = new Slider(850 - sliderWidth, 565, sliderWidth, 20, NULL, 10, 10, 10, 10);
     dataSlider.setLabel("");
     displayEnd = data.size();
   }
