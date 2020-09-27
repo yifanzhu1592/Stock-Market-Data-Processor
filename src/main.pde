@@ -9,7 +9,6 @@ Stocks resultStock;
 ArrayList<Datapoints> dataList;
 ArrayList<Datapoints> resultList;
 ArrayList<Stocks> stockList;
-//Matteo added selectChartButton widget 02/04/20
 ArrayList<Datapoints> dateInRangeList;
 Widget searchButton, upArrowWidget, downArrowWidget, slideWidget,
        dataSlideWidget, selectChartButton, barChart, pointsChart, volumeVsTime, 
@@ -18,7 +17,7 @@ Widget searchButton, upArrowWidget, downArrowWidget, slideWidget,
 Widget[] searchList;
 int currentSearchElement = 0;
 Slider slider, dataSlider;
-VolumeBarChart chart;//Tim added graph, 2/4 11:19
+VolumeBarChart chart;
 VolumePointGraph graph;
 TextWidget searchWidget;
 TextWidget searchSpecificYearStart, searchSpecificMonStart, searchSpecificDayStart, 
@@ -35,15 +34,11 @@ final int SEARCH_WIDGET = 3;
 final int SEARCH_BUTTON = 4;
 final int SEARCH_LIST = 5;
 Screen screen1, currentScreen;
-//final int SEARCH_BUTTON_DATE = 6;
 final int SEARCH_SPECIFIC_YEAR_START = 7, SEARCH_SPECIFIC_MON_START = 8, SEARCH_SPECIFIC_DAY_START = 9;
 final int SEARCH_SPECIFIC_YEAR_END = 11, SEARCH_SPECIFIC_MON_END = 12, SEARCH_SPECIFIC_DAY_END = 13;
 final int SLIDE_WIDGET = 10;
 final int DATA_SLIDE_WIDGET = 28;
-//Screen screen1, screen2, currentScreen;
 int sliderHeight = 0, sliderWidth = 0;
-//Matteo added select chart event 02/04/20
-//final int CHOOSE_CHART = 14;
 final int BAR_CHART = 15;
 final int POINTS_CHART = 16;
 final int VOLUME_VS_TIME = 17;
@@ -59,7 +54,6 @@ final int BACK_ARROW = 26;
 final int FORWARD_ARROW = 27;
 final int DATE_RANGE = 29;
 
-//Screen screen1, currentScreen;
 int focus = NULL;
 int searchListNo = 0;
 double LargestChange = 0;
@@ -68,34 +62,31 @@ String yearStart = "yyyy", monthStart = "mm", dayStart = "dd",
   yearEnd = "yyyy", monthEnd = "mm", dayEnd = "dd";
 String currentLabel = "Type...";
 
-  String fiveYearsPrevious = "2015-01-01";
-  String fiveYearsAfter = "2020-01-01";
-  String twoYearsPrevious = "2018-01-01";
-  String twoYearsAfter = "2020-01-01";
-  String oneYearsPrevious = "2019-01-01";
-  String oneYearsAfter = "2020-01-01";
-  
-  String currentTicker = "";
+String fiveYearsPrevious = "2015-01-01";
+String fiveYearsAfter = "2020-01-01";
+String twoYearsPrevious = "2018-01-01";
+String twoYearsAfter = "2020-01-01";
+String oneYearsPrevious = "2019-01-01";
+String oneYearsAfter = "2020-01-01";
+
+String currentTicker = "";
 
 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-  boolean barChartBool = false;
-  boolean pointsChartBool = false;
-  boolean volumeVTimeBool = false;
-  boolean openingVTimeBool = false;
-  boolean closingVTimeBool = false;
-  boolean allTimeBool = false;
-  boolean fiveYearBool = false;
-  boolean twoYearBool = false;
-  boolean oneYearBool = false;
-  //boolean selectDateBool = false;
-  boolean selectChartBool = false;
-  //Ruxin, added dateRangeBool for the new button, 15/04, 12pm
-  boolean dateRangeBool = false;
-  
-  int searchOrListTicker = 0;
-  String listLabel ="";
+boolean barChartBool = false;
+boolean pointsChartBool = false;
+boolean volumeVTimeBool = false;
+boolean openingVTimeBool = false;
+boolean closingVTimeBool = false;
+boolean allTimeBool = false;
+boolean fiveYearBool = false;
+boolean twoYearBool = false;
+boolean oneYearBool = false;
+boolean selectChartBool = false;
+boolean dateRangeBool = false;
 
+int searchOrListTicker = 0;
+String listLabel = "";
 
 void setup() {
   // Setting the screen and the font of texts
