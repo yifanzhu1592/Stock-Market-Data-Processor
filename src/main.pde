@@ -2526,249 +2526,209 @@ void createChart(String ticker){
   
   if (barChartBool && volumeVTimeBool && allTimeBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool) {
     currentScreen.addWidget(createVolumeBarChart(ticker));
-  } 
+  }
 
-   if(barChartBool && volumeVTimeBool && fiveYearBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool && !dateRangeBool){
+  if (barChartBool && volumeVTimeBool && fiveYearBool && !pointsChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool && !dateRangeBool) {
   
-     currentScreen.addWidget(fiveYearRangeVolumeBarChart(ticker, fiveYearsPrevious, fiveYearsAfter));
-      currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
+    currentScreen.addWidget(fiveYearRangeVolumeBarChart(ticker, fiveYearsPrevious, fiveYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-      if(barChartBool && volumeVTimeBool && twoYearBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool){
+  if (barChartBool && volumeVTimeBool && twoYearBool && !pointsChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
   
-     currentScreen.addWidget(twoYearRangeVolumeBarChart(ticker, twoYearsPrevious, twoYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
+    currentScreen.addWidget(twoYearRangeVolumeBarChart(ticker, twoYearsPrevious, twoYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-     if(barChartBool && volumeVTimeBool && oneYearBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
+  if (barChartBool && volumeVTimeBool && oneYearBool && !pointsChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
   
-     currentScreen.addWidget(oneYearRangeVolumeBarChart(ticker, oneYearsPrevious, oneYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
-    //nnnn
-    if(barChartBool && volumeVTimeBool && dateRangeBool && !oneYearBool && !pointsChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool){
-    //println("here now, size is :"+dateInRangeList.size());
-     currentScreen.addWidget(createVolumeBarChart(ticker));
-    } 
+    currentScreen.addWidget(oneYearRangeVolumeBarChart(ticker, oneYearsPrevious, oneYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+  
+  if (barChartBool && volumeVTimeBool && dateRangeBool && !oneYearBool && !pointsChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool) {
+    currentScreen.addWidget(createVolumeBarChart(ticker));
+  }
 
   if (barChartBool && openingVTimeBool && allTimeBool && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool) {
     currentScreen.addWidget(createOpeningBarChart(ticker));
-  } 
- if(barChartBool && openingVTimeBool && fiveYearBool && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool){
-    
-     currentScreen.addWidget(fiveYearRangeOpeningBarChart(ticker, fiveYearsPrevious, fiveYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
-    
-    if(barChartBool && openingVTimeBool && twoYearBool && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool  && !oneYearBool&& !dateRangeBool){
-    
-     currentScreen.addWidget(twoYearRangeOpeningBarChart(ticker, twoYearsPrevious, twoYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
-    
-    if(barChartBool && openingVTimeBool && oneYearBool && !pointsChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
-    
-     currentScreen.addWidget(oneYearRangeOpeningBarChart(ticker, oneYearsPrevious, oneYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
-    //nnnn
-    ////println(barChartBool);
-    //println(openingVTimeBool);
-    //println(dateRangeBool);
-    //println(oneYearBool);
-    //println(pointsChartBool);
-    //println(openingVTimeBool);
-    //println(closingVTimeBool);
-    //println(allTimeBool);
-    //println(fiveYearBool);
-    //println(twoYearBool);
-    if(barChartBool && openingVTimeBool && dateRangeBool && !oneYearBool && !pointsChartBool && !volumeVTimeBool   && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool){
-     currentScreen.addWidget(createOpeningBarChart(ticker));
-    } 
-
-    if (barChartBool && closingVTimeBool && allTimeBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool) {
-      currentScreen.addWidget(createClosingPriceBarChart(ticker));
-    } 
- 
-    if(barChartBool && closingVTimeBool && fiveYearBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !twoYearBool  && !oneYearBool&& !dateRangeBool){
-    
-     currentScreen.addWidget(fiveYearRangeClosingBarChart(ticker, fiveYearsPrevious, fiveYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
-    
-    if(barChartBool && closingVTimeBool && twoYearBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool){
-    
-     currentScreen.addWidget(twoYearRangeClosingBarChart(ticker, twoYearsPrevious, twoYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    }
-    
-     if(barChartBool && closingVTimeBool && oneYearBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool){
-    
-     currentScreen.addWidget(oneYearRangeClosingBarChart(ticker, oneYearsPrevious, oneYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    }
-    //nnnn
-    if(barChartBool && closingVTimeBool && dateRangeBool && !oneYearBool && !pointsChartBool && !openingVTimeBool && !volumeVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool){
+  }
   
-     currentScreen.addWidget(createClosingPriceBarChart(ticker));
-    } 
+  if (barChartBool && openingVTimeBool && fiveYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool&& !dateRangeBool) {
+    
+    currentScreen.addWidget(fiveYearRangeOpeningBarChart(ticker, fiveYearsPrevious, fiveYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+    
+  if (barChartBool && openingVTimeBool && twoYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool  && !oneYearBool&& !dateRangeBool) {
+    
+    currentScreen.addWidget(twoYearRangeOpeningBarChart(ticker, twoYearsPrevious, twoYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+    
+  if (barChartBool && openingVTimeBool && oneYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
+    
+    currentScreen.addWidget(oneYearRangeOpeningBarChart(ticker, oneYearsPrevious, oneYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+  
+  if (barChartBool && openingVTimeBool && dateRangeBool && !oneYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool) {
+    currentScreen.addWidget(createOpeningBarChart(ticker));
+  }
+
+  if (barChartBool && closingVTimeBool && allTimeBool && !pointsChartBool && !volumeVTimeBool && !openingVTimeBool) {
+    currentScreen.addWidget(createClosingPriceBarChart(ticker));
+  }
+ 
+  if (barChartBool && closingVTimeBool && fiveYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !twoYearBool  && !oneYearBool&& !dateRangeBool) {
+    
+    currentScreen.addWidget(fiveYearRangeClosingBarChart(ticker, fiveYearsPrevious, fiveYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+    
+  if (barChartBool && closingVTimeBool && twoYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool&& !dateRangeBool) {
+    
+    currentScreen.addWidget(twoYearRangeClosingBarChart(ticker, twoYearsPrevious, twoYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+    
+  if (barChartBool && closingVTimeBool && oneYearBool && !pointsChartBool &&
+    !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool&& !dateRangeBool) {
+    
+    currentScreen.addWidget(oneYearRangeClosingBarChart(ticker, oneYearsPrevious, oneYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
+  
+  if (barChartBool && closingVTimeBool && dateRangeBool && !oneYearBool && !pointsChartBool &&
+    !openingVTimeBool && !volumeVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool) {
+  
+    currentScreen.addWidget(createClosingPriceBarChart(ticker));
+  }
     
   if (pointsChartBool && volumeVTimeBool && allTimeBool && !barChartBool && !openingVTimeBool && !closingVTimeBool) {
     currentScreen.addWidget(createVolumePointGraph(ticker));
-  } 
-if(pointsChartBool && volumeVTimeBool && fiveYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool && !dateRangeBool){
+  }
   
-      currentScreen.addWidget(fiveYearRangeVolumePointGraph(ticker, fiveYearsPrevious, fiveYearsAfter));
-      currentScreen.addWidget(backButton);
-      currentScreen.addWidget(forwardButton);
-    } 
+  if (pointsChartBool && volumeVTimeBool && fiveYearBool && !barChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool && !dateRangeBool) {
+  
+    currentScreen.addWidget(fiveYearRangeVolumePointGraph(ticker, fiveYearsPrevious, fiveYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-     if(pointsChartBool && volumeVTimeBool && twoYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool && !dateRangeBool){
+  if (pointsChartBool && volumeVTimeBool && twoYearBool && !barChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool && !dateRangeBool) {
   
-      currentScreen.addWidget(twoYearRangeVolumePointGraph(ticker, twoYearsPrevious, twoYearsAfter));
-      currentScreen.addWidget(backButton);
-      currentScreen.addWidget(forwardButton);
-    } 
+    currentScreen.addWidget(twoYearRangeVolumePointGraph(ticker, twoYearsPrevious, twoYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-     if(pointsChartBool && volumeVTimeBool && oneYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool  && !fiveYearBool && !twoYearBool && !dateRangeBool){
+  if (pointsChartBool && volumeVTimeBool && oneYearBool && !barChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool  && !fiveYearBool && !twoYearBool && !dateRangeBool) {
   
-      currentScreen.addWidget(oneYearRangeVolumePointGraph(ticker, oneYearsPrevious, oneYearsAfter));
-      currentScreen.addWidget(backButton);
-      currentScreen.addWidget(forwardButton);
-    } 
-    //nnnn
-    if(pointsChartBool && volumeVTimeBool && dateRangeBool && !oneYearBool && !barChartBool && !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool){
+    currentScreen.addWidget(oneYearRangeVolumePointGraph(ticker, oneYearsPrevious, oneYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
   
-     currentScreen.addWidget(createVolumePointGraph(ticker));
-    } 
+  if (pointsChartBool && volumeVTimeBool && dateRangeBool && !oneYearBool && !barChartBool &&
+    !openingVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool) {
+  
+    currentScreen.addWidget(createVolumePointGraph(ticker));
+  }
     
-      if (pointsChartBool && openingVTimeBool && allTimeBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool) {
+  if (pointsChartBool && openingVTimeBool && allTimeBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool) {
     currentScreen.addWidget(createOpeningPricePointGraph(ticker));
-    
-  } 
+  }
 
-       if(pointsChartBool && openingVTimeBool && fiveYearBool  && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool && !dateRangeBool){
+  if (pointsChartBool && openingVTimeBool && fiveYearBool && !barChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !twoYearBool && !oneYearBool && !dateRangeBool) {
     
-     currentScreen.addWidget(fiveYearRangeOpeningPointGraph(ticker, fiveYearsPrevious, fiveYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
+    currentScreen.addWidget(fiveYearRangeOpeningPointGraph(ticker, fiveYearsPrevious, fiveYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-    if(pointsChartBool && openingVTimeBool && twoYearBool  && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool  && !oneYearBool && !dateRangeBool){
+  if (pointsChartBool && openingVTimeBool && twoYearBool && !barChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool  && !oneYearBool && !dateRangeBool) {
     
-     currentScreen.addWidget(twoYearRangeOpeningPointGraph(ticker, twoYearsPrevious, twoYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
+    currentScreen.addWidget(twoYearRangeOpeningPointGraph(ticker, twoYearsPrevious, twoYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-    if(pointsChartBool && openingVTimeBool && oneYearBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool && !dateRangeBool){
+  if (pointsChartBool && openingVTimeBool && oneYearBool && !barChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool && !dateRangeBool) {
     
-     currentScreen.addWidget(oneYearRangeOpeningPointGraph(ticker, oneYearsPrevious, oneYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    }
-    //nnnn
-    if(pointsChartBool && openingVTimeBool && dateRangeBool && !oneYearBool && !barChartBool && !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool){
+    currentScreen.addWidget(oneYearRangeOpeningPointGraph(ticker, oneYearsPrevious, oneYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
   
-     currentScreen.addWidget(createOpeningPricePointGraph(ticker));
-    } 
+  if (pointsChartBool && openingVTimeBool && dateRangeBool && !oneYearBool && !barChartBool &&
+    !volumeVTimeBool && !closingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool) {
+  
+    currentScreen.addWidget(createOpeningPricePointGraph(ticker));
+  }
     
- if (pointsChartBool && closingVTimeBool && allTimeBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool) {
+  if (pointsChartBool && closingVTimeBool && allTimeBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool) {
     currentScreen.addWidget(createClosingPricePointGraph(ticker));
   }
     
-   if(pointsChartBool && closingVTimeBool && fiveYearBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !twoYearBool  && !oneYearBool && !dateRangeBool){
+  if (pointsChartBool && closingVTimeBool && fiveYearBool && !barChartBool &&
+    !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !twoYearBool  && !oneYearBool && !dateRangeBool) {
     
-     currentScreen.addWidget(fiveYearRangeClosingPointGraph(ticker, fiveYearsPrevious, fiveYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    } 
+    currentScreen.addWidget(fiveYearRangeClosingPointGraph(ticker, fiveYearsPrevious, fiveYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-    if(pointsChartBool && closingVTimeBool && twoYearBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool && !dateRangeBool){
+  if (pointsChartBool && closingVTimeBool && twoYearBool && !barChartBool &&
+    !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !oneYearBool && !dateRangeBool) {
     
-     currentScreen.addWidget(twoYearRangeClosingPointGraph(ticker, twoYearsPrevious, twoYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    }
+    currentScreen.addWidget(twoYearRangeClosingPointGraph(ticker, twoYearsPrevious, twoYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
     
-     if(pointsChartBool && closingVTimeBool && oneYearBool && !barChartBool && !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool && !dateRangeBool){
+  if (pointsChartBool && closingVTimeBool && oneYearBool && !barChartBool &&
+    !volumeVTimeBool && !openingVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool && !dateRangeBool) {
     
-     currentScreen.addWidget(oneYearRangeClosingPointGraph(ticker, oneYearsPrevious, oneYearsAfter));
-     currentScreen.addWidget(backButton);
-     currentScreen.addWidget(forwardButton);
-    }   
-    //nnnn
-    if(pointsChartBool && closingVTimeBool && dateRangeBool && !oneYearBool && !barChartBool && !openingVTimeBool && !volumeVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool){
+    currentScreen.addWidget(oneYearRangeClosingPointGraph(ticker, oneYearsPrevious, oneYearsAfter));
+    currentScreen.addWidget(backButton);
+    currentScreen.addWidget(forwardButton);
+  }
   
-     currentScreen.addWidget(createClosingPricePointGraph(ticker));
-    } 
- //
- //barChart.setWidgetColor(color(200, 20, 200));
- //  pointsChart.setWidgetColor(color(200, 20, 200));
- //  volumeVsTime.setWidgetColor(color(200, 20, 200));
- //  openingVsTime.setWidgetColor(color(200, 20, 200));
- //  closingVsTime.setWidgetColor(color(200, 20, 200));
- //  allTime.setWidgetColor(color(200, 20, 200));
- //  fiveYear.setWidgetColor(color(200, 20, 200));
- //  twoYear.setWidgetColor(color(200, 20, 200));
- //  oneYear.setWidgetColor(color(200, 20, 200));
- //  selectChart2.setWidgetColor(color(200, 20, 200));
- //  dateRange.setWidgetColor(color(200, 20, 200));
+  if (pointsChartBool && closingVTimeBool && dateRangeBool && !oneYearBool && !barChartBool &&
+    !openingVTimeBool && !volumeVTimeBool && !allTimeBool && !fiveYearBool && !twoYearBool) {
+  
+    currentScreen.addWidget(createClosingPricePointGraph(ticker));
+  }
    
-   currentScreen.addWidget(dataSlideWidget);
-   currentScreen.addWidget(dataSlider);
-   
+  currentScreen.addWidget(dataSlideWidget);
+  currentScreen.addWidget(dataSlider); 
 }
-
-/*Ruxin, delete the method and change to a new permanent menu, 8pm, 16/04
-void deleteMenu(){  
-     currentScreen.Widgets.remove(barChart);
-     currentScreen.Widgets.remove(pointsChart);
-     currentScreen.Widgets.remove(volumeVsTime);
-     currentScreen.Widgets.remove(openingVsTime);
-     currentScreen.Widgets.remove(closingVsTime);
-     currentScreen.Widgets.remove(allTime);
-     //currentScreen.Widgets.remove(selectDate);
-     currentScreen.Widgets.remove(fiveYear);
-     currentScreen.Widgets.remove(twoYear);     
-     currentScreen.Widgets.remove(oneYear);
-     currentScreen.Widgets.remove(selectChart2);
-     
-        
-     //barChartBool = false;
-     //pointsChartBool = false;
-     //volumeVTimeBool = false;
-     //openingVTimeBool = false;
-     //closingVTimeBool = false;
-     //allTimeBool = false;
-     ////selectDateBool = false;
-     //fiveYearBool = false;
-     //twoYearBool = false;
-     //oneYearBool = false;
-     //selectChartBool = false;
-
-     
-      fiveYearsPrevious = "2015-01-01";
-      fiveYearsAfter = "2020-01-01";
-      
-      twoYearsPrevious = "2018-01-01";
-      twoYearsAfter = "2020-01-01"; 
-      
-      oneYearsPrevious = "2019-01-01";
-      oneYearsAfter = "2020-01-01";
-      
-         
-}
-*/
 
 // Deleting the previous chart
 void deletePreviousChart() {
@@ -2838,16 +2798,16 @@ ArrayList<Stocks> bubbleSort(ArrayList<Stocks> list) {
   for (int i = 0; i < arr1.length; i++) {
     arr[i] = (Stocks) arr1[i];
   }
-  int n = arr.length; 
-  for (int i = 0; i < n; i++) 
-    for (int j = 1; j < (n-i); j++) 
-      if (arr[j].ticker.compareTo(arr[j - 1].ticker) < 0) 
-      { 
-        // swap elements
-        Stocks temp = arr[j - 1]; 
-        arr[j - 1] = arr[j]; 
+  int n = arr.length;
+  for (int i = 0; i < n; i++) {
+    for (int j = 1; j < n - i; j++) {
+      if (arr[j].ticker.compareTo(arr[j - 1].ticker) < 0) {
+        Stocks temp = arr[j - 1];
+        arr[j - 1] = arr[j];
         arr[j] = temp;
       }
+    }
+  }
   List<Stocks> list1 = Arrays.asList(arr);
   ArrayList<Stocks> list2 = new ArrayList<Stocks>();
   for (Stocks stock : list1) {
@@ -2857,7 +2817,7 @@ ArrayList<Stocks> bubbleSort(ArrayList<Stocks> list) {
   return list2;
 }
 
-// Deleting all the stocks that don't have transactions, 6pm, 24/3/2020
+// Deleting all the stocks that don't have transactions
 ArrayList<Stocks> deleteNoTransactionsStocks(ArrayList<Stocks> list) {
   int dataListLength = dataList.size();
   for (int i = 0; i < list.size(); ) {
